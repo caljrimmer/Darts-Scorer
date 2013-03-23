@@ -1,0 +1,19 @@
+<td><%= gameEndFormat %></td>
+<td id="history_ach">
+	<% if(achArray.length > 0 ){ %>
+	    <span class="special_medal extra_space"><%= achMedal %></span>
+		<div class="achDetail">
+		<% _.each(achArray, function(ach) { %>
+          	<span class="special_medal extra_space"><%= ach %></span>
+        <% }); %>
+   		</div>    
+	<% }else{ %>
+		<span class="special_off extra_space"><%= achMedal %></span> 
+	<%}%>
+</td>
+<td>
+	<a class="showGame" href="/#game/<%= id %>"><%= ave %></a>
+</td>
+<td>
+	<span class="button but_red but_small">x</span>
+</td>

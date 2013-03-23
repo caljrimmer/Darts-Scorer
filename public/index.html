@@ -1,0 +1,111 @@
+<!doctype html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>Darts Scorer</title>
+	<meta name="author" content="Callum Rimmer <callum@deadtrendy.co.uk>">
+
+	<link rel="stylesheet" href="style/reset.css" media="screen">
+	<link rel="stylesheet" href="style/style.css" media="screen">
+	
+	<meta name="viewport" content="width=400">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ 
+	<script data-main="js/Main" src="js/vendor/require.js"></script>
+
+</head>
+
+<body>  
+	
+	<div id="container">
+
+		<div id="nav_topbar">
+			<div id="nav_topbar_content" class="clearfix">
+				<a id="nav_dashboard" class="button but_medium but_green fl" href="/#dashboard">Dashboard</a>
+				<a id="nav_scorer" class="button but_medium but_green fl" href="/#scoregame">Score a Game</a> 
+				<a id="nav_logout" class="button but_medium but_red fr" href="/#">Logout</a>
+			</div> 
+		</div>
+
+		<div class="logo-container">
+			<img src="images/logo.png">
+		</div>
+		
+		<div id="dashboardArea"> 
+
+			<div class="maincontent">
+
+				<div class="white_wrapper wrapper">
+					<a rel="start_new_game" class="link_but button but_green" href="/#scoregame">Score a Game</a>
+		        </div> 
+
+		        <div id="johnsonbox_wrapper" class="wrapper">
+					<div id="johnsonbox">
+						<img class="loader" src="images/ajax-loader-green.gif"> 
+					</div> 
+				</div>
+				
+				<div id="history_wrapper" class="wrapper">
+					<div id="history"> 
+						<table cellspacing="0" cellpadding="0" class="tb_body">
+							<tbody>
+								
+								<tr class="tb_subheader">
+									<th style="width: 22%;">When</th>
+									<th style="width: 64%;">Achievements</th>
+									<th style="width: 16%;">Ave.</th>
+									<th style="width: 8%;"></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div id="achievements_wrapper" class="wrapper">
+					<div id="achievements"></div>
+				</div>  
+
+			</div>  
+		
+		</div>
+		
+		<!-- EoF dashbaordArea-->
+		
+		<div id="scorerArea">
+           
+			<div class="maincontent">
+
+				<div class="score_wrapper">
+					<div id="scorer" class="clearfix"></div>
+				</div>
+
+			</div>
+
+		</div>
+		
+		<!-- EoF scorerArea-->
+		
+		<div id="gameArea">
+           
+			<div class="maincontent">
+
+				<div class="game_wrapper">
+					<div id="gameDetail" class="clearfix"></div>
+				</div>
+
+			</div>
+
+		</div>
+		
+		<!-- EoF gameArea-->    
+		
+	</div>	
+
+</body>
+</html>
