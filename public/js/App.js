@@ -16,7 +16,7 @@ define([
 	Registry.collections.games = new Games();
    	Registry.App = new Router();
 	
-	//Returning Registry gets associated to window.App in main.js. We can remove this to remove App from global as it isn't necessary.
+	//Returning Registry gets associated to window.App in main.js.
 	return Registry; 
 
 }); 

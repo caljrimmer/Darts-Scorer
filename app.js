@@ -7,8 +7,6 @@ var mongoDB;
 // Configuration
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
@@ -35,7 +33,7 @@ app.configure('production', function(){
 
 //Routes 
 
-//Users
+//Games
 
 app.get('/api/games', function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
@@ -67,7 +65,7 @@ app.delete('/api/games/:id?', function(req, res){
   controllers.games.destroy(req,res);
 });  
 
-//Tweets
+//Record
 
 app.get('/api/records', function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
