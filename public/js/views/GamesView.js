@@ -3,85 +3,67 @@ define([
   'underscore',
   'backbone',
   'timeago',
+  'Registry',
   'views/GamesRowView',
-], function($, _, Backbone, timeago, GamesRowView){
+], function($, _, Backbone, timeago, Registry, GamesRowView){
 	
 	
 	var GamesView = Backbone.View.extend({
 	
 		initialize : function(){
-			_.bindAll(this,'render','removeGame','addGame');                 
+			_.bindAll(this,'render','updateRemoveGame','updateAddGame');                 
 			this.collection.bind('remove',this.render);
 			this.collection.bind('reset',this.render);         
-			this.collection.bind('addGame',this.addGame)
-			this.collection.bind('removeGame',this.removeGame);
+			this.collection.bind('updateAddGame',this.updateAddGame)
+			this.collection.bind('updateRemoveGame',this.updateRemoveGame);
 		},
 	
 		render : function(){
-		
 			var $games = $('#history table tbody'),
 				collection = this.collection,
 				that = this;
-		
 			$games.find('tr').not('.tb_subheader').remove();
-		 
 			collection.each(function(gameItem){
-				that.timeAgo(gameItem);     
-				that.achievements(gameItem);
+				gameItem.set({
+					achArray : that.controllerAchievements(gameItem.get('achievements')),
+					gameEndFormat : that.controllerTimeAgo(gameItem.get('gameEnd'))
+				},{silent:true}); 
 				var view = new GamesRowView({
 					model: gameItem,
 					collection : collection
 				}); 
 				$games.append(view.render().el);
 			});
-		
-			return this;
-			                                  
+			return this;                                
+		},
+	
+		controllerTimeAgo : function(time){ 
+			return $.timeago(time);
+		},
+	
+		controllerAchievements : function(ach,gameEnd){
+			var achArray = [],
+				achMedal;
+			$.each(ach,function(k,v){
+				if(v>0 && !( k==="checkout" || k==="highest3d")){
+					achArray.push(k)
+				}
+				if(k==="checkout" && v > 49){
+					achArray.push( k + ' was ' + v);
+				}
+			});
+			return achArray;
 		},
 		
-		addGame : function(game){
+		updateAddGame : function(game){
 			this.collection.unshift(game);
 			this.render();
 		},
 	
-		removeGame : function(game){
+		updateRemoveGame : function(game){
 			game.destroy();         
 			this.collection.fetch();
-			//TODO need to remove Game from DB then refetch all the games from DB. 
-			//This can then reset the records correctly (i.e thier may be no currently fetched game that the record belongs too).
-		},
-	
-		timeAgo : function(game){ 
-			time = $.timeago(game.get('gameEnd'));
-			game.set({gameEndFormat:time});
-		},
-	
-		achievements : function(game){
-		
-			var achArray = [],
-				achMedal,
-				ach = game.get('achievements');
-			
-			$.each(ach,function(k,v){
-			
-				if(v>0 && !( k==="checkout" || k==="highest3d")){
-					achArray.push(k)
-				}
-			
-				if(k==="checkout" && v > 49){
-					achArray.push( k + ' was ' + v);
-				}
-			
-			});
-		
-			if(achArray.length > 1 || achArray.length == 0){
-				achMedal = achArray.length + ' Achievements'
-			}else{
-				achMedal = '1 Achievement';
-			}
-		
-			game.set({achArray:achArray,achMedal:achMedal});
-		
+			Registry.models.record.fetch();
 		}
 	
 	});

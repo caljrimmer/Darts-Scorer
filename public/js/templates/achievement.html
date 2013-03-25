@@ -7,53 +7,53 @@
 		<tr class="alt">
 			<td>20s</td>
 			<td>
-				<span id="ach_oneeighty" class="<%= oneHundred %>">100</span>
-				<span id="ach_oneforty" class="<%= oneTwenty %>">120</span>
-				<span id="ach_onetwenty" class="<%= oneForty %>">140</span>
-				<span id="ach_onehundred" class="<%= oneEighty %>">180</span>
+				<span id="ach_oneeighty" <%if(oneHundred >0){%>class="on"<%}%>>100</span>
+				<span id="ach_oneforty" <%if(oneTwenty >0){%>class="on"<%}%>>120</span>
+				<span id="ach_onetwenty" <%if(oneForty >0){%>class="on"<%}%>>140</span>
+				<span id="ach_onehundred" <%if(oneEighty >0){%>class="on"<%}%>>180</span>
 			</td>
 		</tr>
 		<tr>
 			<td>Bulls</td>
 			<td>
-				<span id="ach_greeneyes" class="<%= greeneye %>">3 Greeneye</span>
-				<span id="ach_bullseyes" class="<%= bullseye %>">3 Bullseye</span>
+				<span id="ach_greeneyes" <%if(greeneye >0){%>class="on"<%}%>>3 Greeneye</span>
+				<span id="ach_bullseyes" <%if(bullseye >0){%>class="on"<%}%>>3 Bullseye</span>
 			</td>
 		</tr>
 		<tr class="alt">
 			<td>Grouping</td>
 			<td>
-				<span id="ach_singles" class="<%= singles %>">3 Singles</span>
-				<span id="ach_doubles" class="<%= doubles %>">3 Doubles</span>
-				<span id="ach_trebles" class="<%= trebles %>">3 Trebles</span>
+				<span id="ach_singles" <%if(singles >0){%>class="on"<%}%>>3 Singles</span>
+				<span id="ach_doubles" <%if(doubles >0){%>class="on"<%}%>>3 Doubles</span>
+				<span id="ach_trebles" <%if(trebles >0){%>class="on"<%}%>>3 Trebles</span>
 			</td>
 		</tr>
 		<tr>
 			<td>Darters</td>
 			<td>
-				<span id="ach_least24" class="<%= Darter24 %>">D24</span>
-				<span id="ach_least21" class="<%= Darter21 %>">D21</span>
-				<span id="ach_least18" class="<%= Darter18 %>">D18</span>
-				<span id="ach_least15" class="<%= Darter15 %>">D15</span>
-				<span id="ach_least12" class="<%= Darter12 %>">D12</span>
-				<span id="ach_least9" class="<%= Darter9 %>">D9</span>
+				<span id="ach_least24" <%if(leastDarts < 25){%>class="on"<%}%>>D24</span>
+				<span id="ach_least21" <%if(leastDarts < 22){%>class="on"<%}%>>D21</span>
+				<span id="ach_least18" <%if(leastDarts < 19){%>class="on"<%}%>>D18</span>
+				<span id="ach_least15" <%if(leastDarts < 16){%>class="on"<%}%>>D15</span>
+				<span id="ach_least12" <%if(leastDarts < 13){%>class="on"<%}%>>D12</span>
+				<span id="ach_least9" <%if(leastDarts < 10){%>class="on"<%}%>>D9</span>
 			</td>
 		</tr>
 		<tr class="alt">
 			<td>Checkout</td>
 			<td>
-				<span id="ach_c50" class="<%= CO50 %>">C50</span>
-				<span id="ach_c75" class="<%= CO75 %>">C75</span>
-				<span id="ach_c100" class="<%= CO100 %>">C100</span>
-				<span id="ach_c125" class="<%= CO125 %>">C125</span>
-				<span id="ach_c150" class="<%= CO150 %>">C150</span>
-				<span id="ach_c170" class="<%= CO170 %>">C170</span>
+				<span id="ach_c50" <%if(bestCheckout > 49){%>class="on"<%}%>>C50</span>
+				<span id="ach_c75" <%if(bestCheckout > 74){%>class="on"<%}%>>C75</span>
+				<span id="ach_c100" <%if(bestCheckout > 99){%>class="on"<%}%>>C100</span>
+				<span id="ach_c125" <%if(bestCheckout > 124){%>class="on"<%}%>>C125</span>
+				<span id="ach_c150" <%if(bestCheckout > 149){%>class="on"<%}%>>C150</span>
+				<span id="ach_c170" <%if(bestCheckout > 169){%>class="on"<%}%>>C170</span>
 			</td>
 		</tr>
 		<tr>
 			<td>Specials</td>
 			<td>
-				<span id="ach_shanghai" class="<%= shanghai %>">Shanghai</span>
+				<span id="ach_shanghai" <%if(shanghai >0){%>class="on"<%}%>>Shanghai</span>
 			</td>
 		</tr>
 	</tbody>

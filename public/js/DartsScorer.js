@@ -150,6 +150,34 @@ define([
 			}
 			return false;
 		},
+		
+		oneEightyAch : function(score){
+			if(score === 180){
+				return true       
+			}
+			return false;
+		},
+		
+		oneFortyAch : function(score){
+			if(total > 139 && total < 180){
+				return true       
+			}
+			return false;
+		},
+		
+		oneTwentyAch : function(score){
+			if(total > 119 && total < 140){
+				return true       
+			}
+			return false;
+		},
+		
+		oneHundredAch : function(score){
+			if(total > 99 && total < 120){
+				return true       
+			}
+			return false;
+		},
 
 		checkoutCalculation : function(total){ 
 			var total = parseInt(total);

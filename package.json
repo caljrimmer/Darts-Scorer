@@ -2,7 +2,7 @@
   "name": "Darts Scorer",
   "version": "0.0.1",
   "author": "Callum Rimmer <callumt@deadtrendy.co.uk>",
-  "description": "A dart scoring and performance tracking application",
+  "description": "A Darts scoring and performance tracking application",
   "dependencies": {
     "express": "~3.0.0rc4",
 	"mongoose": "2.8",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caljrimmer/darts-scorer.git"
+    "url": "https://github.com/caljrimmer/Darts-Scorer.git"
   }, 
   "engines": { "node": ">= 0.6.0" }
 }

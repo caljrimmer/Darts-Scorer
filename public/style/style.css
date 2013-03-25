@@ -1122,56 +1122,9 @@ table.dart_scoring tr , table.dart_scoring td {
 	display:none;
 }
 
-.special_medal {
-	padding:2px 6px 2px 6px;
-	color: #ffffff;
-	border: solid 1px #da7c0c;
-	background: #f78d1d;
-	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
-	background: -moz-linear-gradient(top, #faa51a, #f47a20);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-}
-
-.special_record {
-	padding:2px 6px 2px 6px;
-   	color: #ffffff;
-	border: solid 1px #538312;
-	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
-	background: -moz-linear-gradient(top, #226F39, #08521E);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-}
-
-.showGame {
-	padding:2px 6px 2px 6px;
-   	color: #ffffff;
-	border: solid 1px #538312;
-	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
-	background: -moz-linear-gradient(top, #226F39, #08521E);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	color:#fff;
-} 
-
-.special_off {
+table span,
+#johnsonbox li span,
+a.showGame {
 	padding:2px 6px 2px 6px;
    	color: #ffffff;
 	border: solid 1px #555;
@@ -1185,6 +1138,24 @@ table.dart_scoring tr , table.dart_scoring td {
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+span.on, 
+.special_medal {
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top, #faa51a, #f47a20);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+
+#johnsonbox li span.special_record,
+a.showGame  {
+	border: solid 1px #538312;
+	background: #08521E;
+	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
+	background: -moz-linear-gradient(top, #226F39, #08521E);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
 }
 
 .extra_space {

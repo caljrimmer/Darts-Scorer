@@ -7,7 +7,8 @@ var GameSchema = new Schema({
 	gameStart : {type : Date, default : new Date()},
 	gameEnd : {type : Date},
 	score : {type : Number, default: 501}, 
-	ave : {type : Number, default: 0.00},  
+	ave : {type : Number, default: 0.00},
+	numberDarts : {type : Number, default: 0},  
 	type : {type : Number, default: 501},
 	achievements : {
 		checkout : {type :Number, default:0}, 

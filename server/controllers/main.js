@@ -1,8 +1,7 @@
 var _ = require('underscore'),
 	mongoose = require('mongoose'),
 	util = require('util'),
-	Game = require('../models/games.js').model,
-	Record = require('../models/records.js').model;
+	Game = require('../models/games.js').model;
 
 mongoose.connect("mongodb://localhost/dartscorer");
 
@@ -198,22 +197,9 @@ exports.games = {
 
 exports.records = {
 	
-	Model : Record, 
+	Model : Game, 
 	
-	create : function(req,res) {
-		
-		var record = new this.Model();
-		
-		if(req.params.id){
-			sendApiError('If you wish to CREATE record then use /api/records not /api/records/:id',res);
-			return false;
-		}
-		
-		create(record,req,res);
-		
-	},
-	
-    readOne : function(req,res){
+    readAll : function(req,res){
 	
 		var id = userID;
 		
@@ -221,22 +207,84 @@ exports.records = {
 			sendApiError('If you wish to READ record then use /api/records/:id not /api/records',res);
 			return false;    
 		}
-	
-		readOne(this.Model,id,req,res); 
-		
-	},
-	
-	update : function(req,res){
-		
-		var id = userID;
-		
-		if(!id){
-			sendApiError('If you wish to UPDATE record then use /api/records/:id not /api/records',res);
-			return false;
-		}
-		
-		update(this.Model,id,req,res)
 
+		var dealWithResults = function dealWithResults(err, results){
+			
+			if(err) {
+				sendApiError(err,res);
+				return false;
+			} 
+			
+			var recordObj = {
+				userID : id,
+				games : results.length,
+				ave : 0.00,
+				bestAve : 0.00,
+				bestCheckout : 0, 
+				highest3d : 0, 
+				leastDarts : 1000, 
+				oneEighty : 0, 
+				oneForty : 0, 
+				oneTwenty : 0, 
+				oneHundred : 0,
+				greeneye : 0,
+				bullseye : 0,
+				singles : 0,
+				doubles : 0,
+				trebles : 0,
+				shanghai : 0
+			},
+				index = 0;
+			
+			_.each(results,function(result,i){                    
+				
+				var iteration = 0;
+				
+				if(i < 30){
+					recordObj.ave += result.ave;
+					index = (i + 1)
+				}
+				
+            	if(result.ave > recordObj.bestAve){
+	            	recordObj.bestAve = result.ave;
+				}
+				
+				if(result.achievements.checkout > recordObj.bestCheckout){
+	            	recordObj.bestCheckout = result.achievements.checkout;
+				} 
+				
+				if(result.achievements.highest3d > recordObj.highest3d){
+	            	recordObj.highest3d = result.achievements.highest3d;
+				}         
+				
+				if(result.numberDarts < recordObj.leastDarts && result.numberDarts > 0){
+	            	recordObj.leastDarts = result.numberDarts;
+				}
+				
+				_.each(recordObj,function(v,k){
+					if(iteration > 6){  
+						if(result.achievements[k] > 0){
+			            	recordObj[k] = recordObj[k] + result.achievements[k];
+						}
+					}
+					iteration +=1;
+				});
+				
+			});
+
+			recordObj.ave = Math.round(recordObj.ave/index * 100)/100;
+	    	sendResult(recordObj,res);
+	
+		} 
+		
+		Game
+		.where('userID',id)
+		.sort('gameEnd',-1)
+		.execFind(function(err, results){
+			dealWithResults(err, results)
+		});    
+
+		
 	}
 	
 }

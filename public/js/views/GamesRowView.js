@@ -24,7 +24,7 @@ define([
 		},
 	
 		deleteGame : function(){
-			this.collection.trigger('removeGame',this.model);
+			this.collection.trigger('updateRemoveGame',this.model);
 		}
 		
 	});

@@ -13,18 +13,17 @@ define([
 		template : _.template(scorerTemplate),
 		
 		events : {
-			'click #addScore' : 'addScore',
-			'click #newGame' : 'newGame'
+			'click #addScore' : 'eventAddScore',
+			'click #newGame' : 'eventNewGame'
 		},
 	
 		initialize : function(){
-			_.bindAll(this,'render','syncTasks');
+			_.bindAll(this,'render','updateTasks');
 			this.numberDarts = 0;
-			//Use a save state as it collates all data before set method. Thus not firing view updates too often.
 			this.saveState = {};
 			this.collection = Registry.collections.games;
 			this.record = Registry.models.record;
-			this.model.bind('sync',this.syncTasks);
+			this.model.bind('sync',this.updateTasks);
 			this.model.bind('change',this.render);
 			this.model.bind('reset',this.render);
 		},
@@ -48,112 +47,48 @@ define([
 			});
 		},
 		
-		newGame : function(){
-			Registry.App.scoregame();
+		afterRender : function(){ 
+			this.$('#score_buttons').hide();
+			this.$('#restart_buttons').show();
 		},
 		
-		addScore : function(){
-			var scoreInput = this.$('#scoreInput'),
-				scoreObj = {},
-				rounds = this.model.get('rounds');
-				
-			scoreInput.removeClass('input_error');
-			
-			if(DartsScorer.scoreValidate(scoreInput.val())){
-				this.scoreObjCreate(scoreObj,scoreInput.val());
-				this.updateGameModel(scoreObj,rounds)
-			}else{
-				scoreInput.addClass('input_error');
-			}   
-		},
-		
-		createRound : function() {
-			this.model.get('rounds').unshift({
-				darts:[],
-				total:0,
-				score:this.model.get('score')
-			});
-		},
-		
-		scoreObjCreate : function(scoreObj,rawScore){ 
-			
-			scoreObj.score = this.model.get('score') - DartsScorer.scoreParse(rawScore);
+		controllerScoreObjCreate : function(scoreObj,rawScore,currentScore){
+			scoreObj.score = currentScore - DartsScorer.scoreParse(rawScore);
 			scoreObj.desc = DartsScorer.scoreSanitise(rawScore); 
-			
-			if(this.model.get('score') > (DartsScorer.scoreParse(rawScore) + 1)){
-            	return scoreObj;
-			}else if(this.endGameCheck(DartsScorer.scoreParse(rawScore),scoreObj.desc)){
-				return scoreObj;
-			}else{
-				scoreObj.score = this.model.get('score');
-				return scoreObj;
-			}  
-
-		},
-		
-		updateGameModel : function(scoreObj,rounds){
-			this.saveState = {};
-			this.updateScore(scoreObj.score);
-			this.updateRound(scoreObj,rounds);
-			this.updateNumberOfDarts();
-			this.updateAverage(scoreObj.score);
-			this.model.set(this.saveState)
-			if(this.model.isFinished()){
-				this.finishGame();
+			if((currentScore > (DartsScorer.scoreParse(rawScore) + 1)) ||
+			 	this.controllerEndGameCheck(DartsScorer.scoreParse(rawScore),scoreObj.desc)){
+			}else{   
+				scoreObj.score = currentScore;
 			}
+			return scoreObj;  
 		},
 		
-		updateAverage : function(score){
-			var type = this.model.get('type'),
-				ave;
-			ave = Math.round(((type - score) / this.numberDarts) * 3 *100)/100
-			this.saveState.ave = ave;
+		controllerAverage : function(type,score,numberDarts){
+			return Math.round(((type - score) / this.numberDarts) * 3 *100)/100 
 		},
 		
-		updateNumberOfDarts : function(){
-			this.saveState.numberDarts = this.numberDarts;
-		},
-		
-		updateScore : function(score){
-			this.model.set({score:score});
-		},
-
-		updateRound : function(scoreObj,rounds){ 
-			rounds[0].total = rounds[0].total + DartsScorer.scoreParse(scoreObj.desc);;
-			rounds[0].darts.push(scoreObj);
-			this.model.set({rounds:rounds});
-			++this.numberDarts;
-			if(this.numberDarts % 3 === 0){
-				this.updateAchievements()
-				this.createRound();	
-			}
-		},
-		
-		updateAchievements : function(){
-			
-			var achievements = this.model.get('achievements'),
-				round = this.model.get('rounds')[0],
-				total = DartsScorer.scoreParse(round.darts[0].desc) 
-						+ DartsScorer.scoreParse(round.darts[1].desc) 
-						+ DartsScorer.scoreParse(round.darts[2].desc);
+		controllerUpdateAchievements : function(achievements,round){
+			var total = DartsScorer.scoreParse(round.darts[0].desc) 
+					  + DartsScorer.scoreParse(round.darts[1].desc) 
+					  + DartsScorer.scoreParse(round.darts[2].desc);
 		
 			if(achievements.highest3d < total){
 				achievements.highest3d = total;
 			}
-		
-			if(total === 180){
+			
+			if(DartsScorer.oneEightyAch(total)){
 				++achievements.oneEighty;
 			}
-		
-			if(total > 139 && total < 180){
+			
+			if(DartsScorer.oneFortyAch(total)){
 				++achievements.oneForty;
-			}
-		
-			if(total > 119 && total < 140){
+			} 
+			
+			if(DartsScorer.oneTwentyAch(total)){
 				++achievements.oneTwenty;
 			}
 		
-			if(total > 99 && total < 120){
+			if(DartsScorer.oneHundredAch(total)){
 				++achievements.oneHundred;
 			}
 		
@@ -181,11 +116,10 @@ define([
 				++achievements.shanghai;
 			}
 		
-			this.saveState.achievements = achievements;  
-			
+			return achievements;  
 		},
 		
-		endGameCheck : function(score,desc){
+		controllerEndGameCheck : function(score,desc){
 			if(this.model.get('score') - score === 0 && DartsScorer.doublesValidate(desc)){
 				return true;
 			}else{
@@ -193,40 +127,79 @@ define([
 			}
 		},
 		
-		recordUpdate : function(){
-		    this.record.trigger('updateRecord',this.model);
-		},
-		
-		gamesUpdate : function(){
-			this.collection.trigger('addGame',this.model);
-		},
-		
-		endGameUpdate : function(){
-			var achievements = this.model.get('achievements');
-				
-			if(this.model.get('rounds')[0].score === 0){
-				achievements.checkout = this.model.get('rounds')[1].score;
+		controllerEndGame : function(achievements,rounds){
+			if(rounds[0].score === 0){
+				achievements.checkout = rounds[1].score;
 			}else{
-				achievements.checkout = this.model.get('rounds')[0].score; 
+				achievements.checkout = rounds[0].score; 
 			}
-
-			this.model.set({gameEnd:new Date(),achievements:achievements}); 
-		},
-		
-		UITidy : function(){ 
-			this.$('#score_buttons').hide();
-			this.$('#restart_buttons').show();
+		   return achievements;
 		}, 
 		
-		syncTasks : function(model, response, options){
-			this.recordUpdate();
-			this.gamesUpdate();
-			this.UITidy();
+		updateGameModel : function(scoreObj,rounds){
+			this.saveState = {};
+			this.model.set({score:scoreObj.score})
+			this.updateRound(scoreObj,rounds);
+			this.saveState.numberDarts = this.numberDarts;
+			this.saveState.ave = this.controllerAverage(
+				this.model.get('type'),
+				this.model.get('score'),
+				this.numberDarts
+			);
+			this.model.set(this.saveState);
+			if(this.model.isFinished()){
+				this.model.set({
+					gameEnd:new Date(),
+					achievements: this.controllerEndGame(
+						this.model.get('achievements'),
+						this.model.get('rounds')
+					) 
+				});  
+				this.model.save();
+			}
+		},
+
+		updateRound : function(scoreObj,rounds){ 
+			rounds[0].total = rounds[0].total + DartsScorer.scoreParse(scoreObj.desc);;
+			rounds[0].darts.push(scoreObj);
+			this.model.set({rounds:rounds});
+			++this.numberDarts;
+			if(this.numberDarts % 3 === 0){
+				this.saveState.achievements = this.controllerUpdateAchievements(
+					this.model.get('achievements'),
+					this.model.get('rounds')[0]
+				)
+				this.model.get('rounds').unshift({
+					darts:[],
+					total:0,
+					score:this.model.get('score')
+				});	  
+			}
 		},
 		
-		finishGame : function(){
-			this.endGameUpdate();
-			this.model.save();
+		updateTasks : function(model, response, options){ 
+		    this.record.trigger('updateRecord',this.model);
+			this.collection.trigger('updateAddGame',this.model);
+			this.afterRender();
+		},
+		
+		eventNewGame : function(){
+			Registry.App.scoregame();
+		},
+		
+		eventAddScore : function(){
+			var scoreInput = this.$('#scoreInput'),
+				scoreObj = {},
+				rounds = this.model.get('rounds');
+				
+			scoreInput.removeClass('input_error');
+			
+			if(DartsScorer.scoreValidate(scoreInput.val())){
+				this.controllerScoreObjCreate(scoreObj,scoreInput.val(),this.model.get('score'));
+				this.updateGameModel(scoreObj,rounds)
+			}else{
+				scoreInput.addClass('input_error');
+			}   
 		}
 		
 	});

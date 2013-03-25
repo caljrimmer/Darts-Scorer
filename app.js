@@ -70,19 +70,7 @@ app.delete('/api/games/:id?', function(req, res){
 app.get('/api/records', function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With"); 
-  controllers.records.readOne(req,res);
-});
-
-app.post('/api/records', function(req, res){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  controllers.records.create(req,res);
-});
-
-app.put('/api/records/:id?', function(req, res){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  controllers.records.update(req,res);
+  controllers.records.readAll(req,res);
 });
 
 

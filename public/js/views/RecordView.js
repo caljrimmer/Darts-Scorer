@@ -30,12 +30,10 @@ define([
 		* This can be calculated on the server but will be out of date once a game is scored
 		*/
 		
-		setAverage : function(){
-			var gamesAveArray = this.games.pluck('ave'),
-				gamesAveTotal = 0,
+		controllerSetAverage : function(gamesAveArray){
+			var gamesAveTotal = 0,
 				index = 0,
 				gamesAve;
-				
 			$.each(gamesAveArray,function(k,v){
 				if(k < 10){
 					gamesAveTotal = gamesAveTotal + v;
@@ -44,47 +42,11 @@ define([
 					index = 10 + 1;
 				}
 			});
-			       
 			return Math.round((gamesAveTotal/index)*100)/100;
-			
 		},
 		
-		updateRecord : function(game){ 
-			
-			var currentRecord = this.model.toJSON(),
-				newRecord = game.toJSON();
-				
-				if(newRecord.ave > currentRecord.bestAve){
-					currentRecord.bestAve = newRecord.ave;
-				}
-				
-				if(newRecord.numberDarts < currentRecord.leastDarts){
-				 	currentRecord.leastDarts = newRecord.numberDarts;	
-				}
-				
-				if(newRecord.achievements.highest3d > currentRecord.highest3d){
-				 	currentRecord.highest3d = newRecord.achievements.highest3d;	
-				}
-				
-				if(newRecord.achievements.checkout > currentRecord.bestCheckout){
-				 	currentRecord.bestCheckout = newRecord.achievements.checkout;	
-				}
-				
-				currentRecord.bullseye += newRecord.achievements.bullseye;
-				currentRecord.greeneye += newRecord.achievements.greeneye;
-				currentRecord.singles += newRecord.achievements.singles;
-				currentRecord.doubles += newRecord.achievements.doubles;
-				currentRecord.trebles += newRecord.achievements.trebles;
-				currentRecord.oneEighty += newRecord.achievements.oneEighty;
-				currentRecord.oneForty += newRecord.achievements.oneForty;
-				currentRecord.oneHundred += newRecord.achievements.oneHundred;
-				currentRecord.oneTwenty += newRecord.achievements.oneTwenty;
-				currentRecord.shanghai += newRecord.achievements.shanghai;
-				currentRecord.ave = this.setAverage();
-				currentRecord.games += 1
-				
-				this.model.save(currentRecord) 
-				
+		updateRecord : function(){ 
+			this.model.fetch();
 		}
 	
 	});

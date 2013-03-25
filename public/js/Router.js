@@ -17,13 +17,15 @@ define([
 	
 	var $dashboardArea = $('#dashboardArea'),
 		$scorerArea = $('#scorerArea'),
-		$gameArea = $('#gameArea');
+		$gameArea = $('#gameArea'),
+		$statsArea = $('#statsArea');
   
 	var Router = Backbone.Router.extend({
 	
 		routes : {
 			'dashboard' : 'dashboard',
 			'scoregame' : 'scoregame',
+			'stats' : 'stats',
 			'game/:gameid' : 'gameDetail'
 		},
 	
@@ -58,8 +60,6 @@ define([
 			Registry.models.record.fetch({
 				success : function(){
 					$dashboardArea.find('#johnsonbox').html(Registry.App.recordView.render().el);
-					$dashboardArea.find('#achievements').html(Registry.App.achievementView.render().el);
-					$dashboardArea.find('#achievements').show();
 				}
 			});
 			       
@@ -92,6 +92,18 @@ define([
 				}
 			});
 
+		},
+		
+		stats : function(){
+			AreaSelect($statsArea);
+			
+			//Initial grab dashboard data on load
+			Registry.models.record.fetch({
+				success : function(){
+					$statsArea.find('#achievements').html(Registry.App.achievementView.render().el);
+					$statsArea.find('#achievements').show();
+				}
+			});
 		}
 	
 	});
