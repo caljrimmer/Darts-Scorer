@@ -3,11 +3,11 @@ define([
   'underscore',
   'backbone',
   'Registry'
-], function($, _, Backbone,Registry){
+], function($, _, Backbone, Registry){
 
 	var Record = Backbone.Model.extend({
 		
-		urlRoot : '/api/records',
+		urlRoot : '/api/records/',
 		
 		defaults : {
 			games: 0,
@@ -26,6 +26,11 @@ define([
 			doubles: 0,
 			trebles: 0,
 			shanghai: 0
+		},
+		
+		sync : function(method,model,options){
+		    $.ajaxSetup({headers:{userid:Registry.userid}});
+		    Backbone.sync(method,model,options);
 		}
 
 	});

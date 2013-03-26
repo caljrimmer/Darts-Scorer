@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var GameSchema = new Schema({
 	id : {type : String, required: true}, 
-	userID : {type : String},
+	userid : {type : String},
 	gameStart : {type : Date, default : new Date()},
 	gameEnd : {type : Date},
 	score : {type : Number, default: 501}, 
@@ -28,5 +28,4 @@ var GameSchema = new Schema({
 }); 
 
 //Initiate
-mongoose.model('Game',GameSchema);
-exports.model = mongoose.model('Game');
+exports.model = mongoose.model('Game',GameSchema);

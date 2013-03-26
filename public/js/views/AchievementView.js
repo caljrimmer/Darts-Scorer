@@ -16,7 +16,6 @@ define([
 		},
 	
 		render : function(){
-			console.log(this.model.toJSON())
 			var renderContent = this.template(this.model.toJSON());
 			$(this.el).html(renderContent); 
 			return this;

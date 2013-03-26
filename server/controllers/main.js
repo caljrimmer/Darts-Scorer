@@ -3,13 +3,7 @@ var _ = require('underscore'),
 	util = require('util'),
 	Game = require('../models/games.js').model;
 
-mongoose.connect("mongodb://localhost/dartscorer");
-
-// This is currently programmed to be a single user application
-// To extend for a multi-user application then I will need to add something like "Passport" npm.
-// Hard-coding UserID for now
-
-var userID = "unique1";                
+mongoose.connect("mongodb://localhost/dartscorer");             
 	
 //Send to Browser Methods
 
@@ -47,7 +41,6 @@ var create = function create(model,req,res){
 	
 	model = _.extend(model,req.body);
 	model.id = guidGenerate();
-	model.userID = userID;
 	model.save(function(err){
 		if(err) {
 			sendApiError(err,res);
@@ -73,7 +66,7 @@ var readOne = function read(model,needle,req,res){
 	
 }; 
 
-var readAll = function read(model,limit,req,res){
+var readAll = function read(model,limit,userid,req,res){                  
 	
 	var dealWithResults = function dealWithResults(err, results){
 		if(err) {
@@ -85,14 +78,14 @@ var readAll = function read(model,limit,req,res){
     
 	if(limit > 0){
 		model
-		.where('userID',userID)
+		.where('userid',userid)
 		.sort('gameEnd',-1)
 		.limit(30)
 		.execFind(function(err, results){
 			dealWithResults(err, results)
 		});
 	}else{
-		model.find({userID:userID},function(err, results){
+		model.find({userid:userid},function(err, results){
 			dealWithResults(err, results)
 		});
 	}
@@ -162,8 +155,15 @@ exports.games = {
 	},
 	
 	readAll : function(req,res){
+		
+	    var userid = req.headers.userid;
 	
-		readAll(this.Model,30,req,res);
+		if(!userid){
+			sendApiError('If you wish to READ all games then use /api/games with userid in the header',res);
+			return false;
+		}
+	
+		readAll(this.Model,30,userid,req,res);
 		
 	},
 	
@@ -200,11 +200,10 @@ exports.records = {
 	Model : Game, 
 	
     readAll : function(req,res){
-	
-		var id = userID;
+		var id = req.headers.userid;
 		
 		if(!id){
-			sendApiError('If you wish to READ record then use /api/records/:id not /api/records',res);
+			sendApiError('If you wish to READ a record then use /api/records with userid in the header',res);
 			return false;    
 		}
 
@@ -216,7 +215,7 @@ exports.records = {
 			} 
 			
 			var recordObj = {
-				userID : id,
+				userid : id,
 				games : results.length,
 				ave : 0.00,
 				bestAve : 0.00,
@@ -271,14 +270,21 @@ exports.records = {
 				});
 				
 			});
+            
+			if(index > 0){
+				recordObj.ave = Math.round(recordObj.ave/index * 100)/100;
+			}
+			
+			if(recordObj.leastDarts === 1000){
+				recordObj.leastDarts = 0;
+			}
 
-			recordObj.ave = Math.round(recordObj.ave/index * 100)/100;
 	    	sendResult(recordObj,res);
 	
 		} 
 		
 		Game
-		.where('userID',id)
+		.where('userid',id)
 		.sort('gameEnd',-1)
 		.execFind(function(err, results){
 			dealWithResults(err, results)

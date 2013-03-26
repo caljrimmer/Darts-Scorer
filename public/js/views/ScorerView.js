@@ -14,7 +14,8 @@ define([
 		
 		events : {
 			'click #addScore' : 'eventAddScore',
-			'click #newGame' : 'eventNewGame'
+			'click #newGame' : 'eventNewGame',
+			'keypress #scoreInput' : 'eventEnter'
 		},
 	
 		initialize : function(){
@@ -23,6 +24,7 @@ define([
 			this.saveState = {};
 			this.collection = Registry.collections.games;
 			this.record = Registry.models.record;
+			this.model.set({checkoutRoute:'- - -'})
 			this.model.bind('sync',this.updateTasks);
 			this.model.bind('change',this.render);
 			this.model.bind('reset',this.render);
@@ -138,7 +140,7 @@ define([
 		
 		updateGameModel : function(scoreObj,rounds){
 			this.saveState = {};
-			this.model.set({score:scoreObj.score})
+			this.model.set({score:scoreObj.score,checkoutRoute:DartsScorer.checkoutCalculation(scoreObj.score)});
 			this.updateRound(scoreObj,rounds);
 			this.saveState.numberDarts = this.numberDarts;
 			this.saveState.ave = this.controllerAverage(
@@ -154,7 +156,7 @@ define([
 						this.model.get('achievements'),
 						this.model.get('rounds')
 					) 
-				});  
+				});
 				this.model.save();
 			}
 		},
@@ -199,7 +201,15 @@ define([
 				this.updateGameModel(scoreObj,rounds)
 			}else{
 				scoreInput.addClass('input_error');
-			}   
+			}
+			   
+		},
+		
+		eventEnter : function(e){
+			if (e.keyCode == 13) {
+				this.eventAddScore();
+				this.$('#scoreInput').focus();
+			}
 		}
 		
 	});

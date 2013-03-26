@@ -1,13 +1,10 @@
-/**
-* Simple Shard Obj that passes anything Instansiated 
-*/
-
-define([], function() {
+define(['LocalStorage'], function(LocalStorage) {
     var Registry = {
+		userid : "",
+		adminid : LocalStorage.get(),
 		models : {},
 		collections : {},
 		App : {}
-	};          
-	
+	};  
     return Registry;
 });

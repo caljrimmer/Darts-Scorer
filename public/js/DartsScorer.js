@@ -159,27 +159,27 @@ define([
 		},
 		
 		oneFortyAch : function(score){
-			if(total > 139 && total < 180){
+			if(score > 139 && score < 180){
 				return true       
 			}
 			return false;
 		},
 		
 		oneTwentyAch : function(score){
-			if(total > 119 && total < 140){
+			if(score > 119 && score < 140){
 				return true       
 			}
 			return false;
 		},
 		
 		oneHundredAch : function(score){
-			if(total > 99 && total < 120){
+			if(score > 99 && score < 120){
 				return true       
 			}
 			return false;
 		},
 
-		checkoutCalculation : function(total){ 
+		checkoutCalculation : function(total){
 			var total = parseInt(total);
 			switch(total)
 			        {
@@ -344,7 +344,7 @@ define([
 				case 4: return 'D2'; break;
 				case 3: return '1 D1'; break;
 				case 2: return 'D1'; break;
-				default: return null;
+				default: return '- - -';
 			} 
 		}
 

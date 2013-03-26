@@ -14,8 +14,7 @@ define([
 		    numberDarts: 0,
 			ave: 0.00,
 			type: 501,
-			score : 501,
-			
+			score : 501
 		},
 		
 		initialize : function(){

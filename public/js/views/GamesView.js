@@ -22,18 +22,20 @@ define([
 			var $games = $('#history table tbody'),
 				collection = this.collection,
 				that = this;
-			$games.find('tr').not('.tb_subheader').remove();
-			collection.each(function(gameItem){
-				gameItem.set({
-					achArray : that.controllerAchievements(gameItem.get('achievements')),
-					gameEndFormat : that.controllerTimeAgo(gameItem.get('gameEnd'))
-				},{silent:true}); 
-				var view = new GamesRowView({
-					model: gameItem,
-					collection : collection
-				}); 
-				$games.append(view.render().el);
-			});
+			if(collection.length){
+				$games.find('tr').not('.tb_subheader').remove();
+				collection.each(function(gameItem){
+					gameItem.set({
+						achArray : that.controllerAchievements(gameItem.get('achievements')),
+						gameEndFormat : that.controllerTimeAgo(gameItem.get('gameEnd'))
+					},{silent:true}); 
+					var view = new GamesRowView({
+						model: gameItem,
+						collection : collection
+					}); 
+					$games.append(view.render().el);
+				});  
+			}
 			return this;                                
 		},
 	

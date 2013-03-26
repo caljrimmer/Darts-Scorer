@@ -14,6 +14,10 @@ img {
 	border: 0;
 }
 
+.mainBlock {
+	display:none;
+}
+
 #container {
 	margin: 0px auto -5px;
 	width: 378px;
@@ -190,7 +194,7 @@ img {
 	position:relative;
 }
 
-#scorer, #gameDetail{
+#scorer, #gameDetail, #loginForm{
    	width:378px;
 	margin:0px 0 20px 0;
 	background: #fff;
@@ -201,7 +205,46 @@ img {
 	z-index:-1px; 
 }
 
-#scoreInput {
+#loginForm { 
+	width:358px;
+	padding:10px;
+}
+
+#loginForm h2 {
+	font-size:19px;
+	margin:10px 0 10px 0;
+	font-weight:bold;
+	color:#08521e;
+}
+
+#loginForm p {
+	font-size:13px;
+	margin:10px 0 10px 0;
+	line-height:20px;
+}
+
+#loginForm p#loginError{
+	background:#ee3838;
+	border:4px solid red; 
+	padding:10px 0 10px 0;
+	color:#fff;
+	text-align:center;
+}
+
+#loginInfo p{
+	padding: 10px;
+	color:#eda29c;
+	line-height:22px;
+	font-size:13px;
+	
+}
+
+#loginInfo p b {
+	color:#fff;
+} 
+
+#scoreInput,
+#emailInput {
 	width:146px;
 	height:36px;
 	font-size:20px;
@@ -216,7 +259,16 @@ img {
 	-moz-border-radius: 6px;
 }
 
-#scoreInput:focus {
+#emailInput {
+	width:224px;
+	height:28px;
+	text-align:left;
+	padding:3px;  
+	font-size:13px;
+}
+
+#scoreInput:focus,
+#emailInput:focus {
 	background:#9AF6B6;
 }
 
@@ -434,6 +486,11 @@ h1#name {
 	clear: both;
 }
 
+.clearPadd {
+	clear:both;
+	height:10px;
+}
+
 p {
 	color: #000;
 }
@@ -454,6 +511,13 @@ a {
 	position:relative;
 	z-index:-1px;
 	display:none;
+}    
+
+table p.empty {
+	font-size:18px;
+	text-align:center;
+	padding:6px;
+	color:#ccc;
 }
 
 table.tb_body {
@@ -500,278 +564,6 @@ td {
 th {
 	color:#707070;
 	text-align:left;
-}
-
-/* The Register Form */
-
-#register_form {
-	width:420px;
-	margin:auto;
-	margin-top:0px;
-	background:#6C120C;
-	padding-top:20px;  
-	padding-bottom:30px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-
-#register_form h2 {
-	color:#fff;
-	font-size:20px;
-	font-weight:bold;
-	margin:10px 30px 0px 30px; 
-}
-
-#register_form p {
-	margin:20px 30px 20px 30px;
-	color:#fff;
-	font-size:14px;
-	line-height:24px;
-}
-
-
-#register_form p a {
-	color:yellow;
-}
-
-
-#register_form p a.button {
-	background:#3ac062;
-	color:#fff;
-	padding:8px 14px 8px 14px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-}
-
-
-#register_form input {
-	width: 360px;
-	padding: 8px;
-	border:none;
-	background:#fff;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	font-weight: bold;
-	font-size: 16px;
-	margin: 10px 0px 10px 30px;
-	color:#000;
-}
-
-#register_form input.on {
-	color:#000;
-	font-style:normal;
-}
-
-#register_form select {
-	width: 360px;
-	padding: 8px;
-	border:none;
-	background:#fff;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	font-weight: bold;
-	font-size: 16px;
-	margin: 10px 0px 10px 30px;
-	color:#000;
-}
-
-.checkbox_text {
-	width: 316px;
-	padding: 6px;
-	margin: 36px 0px -20px 30px;
-}
-
-.checkbox_text p {
-	margin:-5px 0  0 30px;
-	line-height:18px;
-	color:#666;
-	font-size: 12px;
-}
-
-.checkbox_text b {
-	font-size:13px;
-	color:#000;
-}
-
-
-.fakecheck {
-	text-decoration: none;
-	outline: none;
-	background: url(../images/checkboxes.png) no-repeat;
-	height: 22px;
-	width: 22px;
-	display: block;
-	float: left;
-	color: #666666;
-	margin-left:-5px;
-}
-/* fake checkbox : hover state */
-.fakecheck:hover {
-	background-position: left -22px; 
-}
-/* fake checkbox : checked state */
-.fakechecked {
-	background-position: left -44px;
-}
-
-#register_form .captcha {
-	width:360px;
-	background:#3c0604;
-	margin:10px 0 0 30px;
-    -moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	padding:4px 0 10px 0; 
-}
-
-#register_form .captcha p{
-	clear:both;
-	margin:10px 20px 10px 20px;
-	font-size:14px;
-	font-weight:bold;
-	color:#fff;
-}
-
-#register_form .captcha img.captcha {
-	float:left; 
-	height:44px;
-	margin:0 0px 10px 20px;
-	width:100px;
-}
-
-#register_form .captcha input{
-	width:190px;
-	margin:8px 20px 10px 0;
-	float:right;
-	color:#000;
-	font-style:normal;
-	
-}
-
-#register_form input.register_button {
-    width:380px; 
-	height:52px;
-	border:none;
-	margin:10px 0 0 30px;
-	background: url(../images/register_big_but.gif) no-repeat; 
-}
-
-#register_form input.register_button:hover {
-   cursor:pointer;
-}
-
-#register_form input.login_button {
-    width:380px; 
-	height:52px;
-	border:none;
-	margin:10px 0 0 30px;
-	background: url(../images/login_big_but.gif) no-repeat; 
-}
-
-#register_form input.login_button:hover {
-   cursor:pointer;
-}
-
-p#register_text {
-	font:normal 14px helvetica,arial;
-	color:#eda29c;
-	line-height:30px;
-	width:420px;
-	margin-bottom:20px;
-}
-
-p#register_text b {
-	color:#fff;
-}
-
-.errors {
-	width:420px;
-	margin:auto;
-	margin-top:0px;
-	margin-bottom:20px;
-	background:red;
-	padding-top:20px;  
-	padding-bottom:30px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-
-.errors p {
-	color:#fff;
-	font-weight:bold;
-	font-size:16px;
-	line-height:24px;
-	text-align:center;
-}
-
-#basic_form {
-	width:500px;
-	margin:auto;
-	margin-top:60px;
-	background:#fff;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border:3px solid #5F0806;
-	padding-bottom:20px;
-}
-
-#basic_form h1 {
-	padding:20px 30px 10px 30px;
-	font-size:16px;
-	font-weight:bold;
-	color:#000;
-}
-
-#basic_form p {
-	padding:10px 30px 10px 30px;
-	color:#000;
-	font-size:15px;
-	line-height:22px;
-}
-
-#basic_form a {
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	background: #08521E;
-	color: #fff;
-	padding: 2px 4px 2px 4px;
-}
-
-#basic_form input {
-	width: 260px;
-	padding: 6px;
-	border: 3px solid #ccc;
-	font-weight: bold;
-	font-size: 16px;
-	margin: 10px 0px 30px 30px;
-	color:#666;
-	font-style:italic;
-	float:left;
-}
-
-#basic_form input.forgot_button {
-	width: 160px;
-	padding: 5px;
-	border: 3px solid #ccc;
-	font-weight: bold;
-	font-size: 16px;
-	margin: 10px 30px 30px 0;
-	color:#666;
-	font-style:italic;
-	float:right;
-}
-
-#basic_form input.on {
-	color:#000;
-	font-style:normal;
-}
-
-#basic_form .errors {
-	width:500px;
-	background:#ee3838;
-	border:4px solid red; 
-	position:absolute;
-	top:220px;
-	right:376px;
 }
 
 /*Landing Page*/
@@ -1085,7 +877,6 @@ table.dart_scoring tr , table.dart_scoring td {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
 }
 	
-	
 .but_small {
 	font-size: 11px;
 	padding: 3px 6px 3px 6px;
@@ -1222,6 +1013,15 @@ a.showGame  {
 	margin-top:50px;
 	margin-left:170px;
 	float:left;
+}
+
+/*
+Login Form
+*/
+
+#loginError,
+#loginSuccess {
+	display:none;
 }
 
 /*
