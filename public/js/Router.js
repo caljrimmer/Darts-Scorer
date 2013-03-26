@@ -31,6 +31,7 @@ define([
 			'stats/:userid' : 'stats',
 			'game/:gameid' : 'gameDetail',
 			'logout' : 'logout',
+			'' : 'default', 
 			'*notFound' : 'notFound'
 		},
 	
@@ -139,6 +140,14 @@ define([
 				$('#nav_topbar').empty();
 			}
 			
+		},
+		
+		default : function(){
+			if(Registry.adminid !== ""){
+				Registry.App.navigate('/dashboard/'+Registry.adminid, true);
+			}else{
+				this.notFound();
+			}
 		},
 		
 		logout : function(){
