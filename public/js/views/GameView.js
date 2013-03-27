@@ -7,9 +7,9 @@ define([
   'text!templates/game.html',
 ], function($, _, Backbone, AreaSelect, ScorerRowView, gameTemplate){
 	
-	var $gameArea = $('#gameArea');
-	
 	var GameView = Backbone.View.extend({
+		
+		el : $('#gameDetail'),
 
 		template : _.template(gameTemplate), 
 	
@@ -17,14 +17,14 @@ define([
 			_.bindAll(this,'render');
 			this.model.bind('change',this.render);
 			this.model.bind('reset',this.render);
-			this.model.fetch()
+			this.updateGame();                
 		},
 		
 		render : function(){
 			var renderContent = this.template(this.model.toJSON());
-			AreaSelect($gameArea);
 			$(this.el).html(renderContent);
-			this.renderRow(); 
+			this.renderRow();
+			AreaSelect($(this.el).parents('.mainBlock')); 
 			return this;
 		},
 		
@@ -39,6 +39,10 @@ define([
                 });
 				that.$("tbody").append(view.render().el);
 			});
+		},
+		
+		updateGame : function(){
+			this.model.fetch();
 		}
 	  
 	});

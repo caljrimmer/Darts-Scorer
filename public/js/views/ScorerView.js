@@ -4,11 +4,14 @@ define([
   'backbone',
   'DartsScorer',
   'Registry',
+  'AreaSelect',
   'views/ScorerRowView',
   'text!templates/scorer.html',
-], function($, _, Backbone, DartsScorer, Registry, ScorerRowView, scorerTemplate){
+], function($, _, Backbone, DartsScorer, Registry, AreaSelect, ScorerRowView, scorerTemplate){
 
 	var ScorerView = Backbone.View.extend({
+		
+		el : $('#scorer'),
 		
 		template : _.template(scorerTemplate),
 		
@@ -24,7 +27,8 @@ define([
 			this.saveState = {};
 			this.collection = Registry.collections.games;
 			this.record = Registry.models.record;
-			this.model.set({checkoutRoute:'- - -'})
+			this.model.set({checkoutRoute:'- - -'});
+			this.render();
 			this.model.bind('sync',this.updateTasks);
 			this.model.bind('change',this.render);
 			this.model.bind('reset',this.render);
@@ -33,7 +37,8 @@ define([
 		render : function(){
 			var renderContent = this.template(this.model.toJSON());
 			$(this.el).html(renderContent);
-			this.renderRow(); 
+			this.renderRow();
+			AreaSelect($(this.el).parents('.mainBlock'));  
 			return this;
 		},
 		

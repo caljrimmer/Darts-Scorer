@@ -510,7 +510,6 @@ a {
 	-webkit-border-radius: 10px;
 	position:relative;
 	z-index:-1px;
-	display:none;
 }    
 
 table p.empty {

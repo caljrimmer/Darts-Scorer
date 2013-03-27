@@ -4,24 +4,30 @@ define([
   'backbone',
   'timeago',
   'Registry',
+  'AreaSelect',
   'views/GamesRowView',
-], function($, _, Backbone, timeago, Registry, GamesRowView){
+], function($, _, Backbone, timeago, Registry, AreaSelect, GamesRowView){
 	
 	
 	var GamesView = Backbone.View.extend({
+		
+		el : $('#history'),
 	
 		initialize : function(){
 			_.bindAll(this,'render','updateRemoveGame','updateAddGame');                 
 			this.collection.bind('remove',this.render);
-			this.collection.bind('reset',this.render);         
+			this.collection.bind('reset',this.render); 
+			this.collection.bind("change", this.render);        
 			this.collection.bind('updateAddGame',this.updateAddGame)
-			this.collection.bind('updateRemoveGame',this.updateRemoveGame);
+			this.collection.bind('updateRemoveGame',this.updateRemoveGame); 
+			this.updateGames();
 		},
 	
 		render : function(){
-			var $games = $('#history table tbody'),
+			var $games = $(this.el).find('table tbody'),
 				collection = this.collection,
-				that = this;
+				that = this; 
+				
 			if(collection.length){
 				$games.find('tr').not('.tb_subheader').remove();
 				collection.each(function(gameItem){
@@ -36,6 +42,8 @@ define([
 					$games.append(view.render().el);
 				});  
 			}
+			
+			AreaSelect($(this.el).parents('.mainBlock'));
 			return this;                                
 		},
 	
@@ -66,6 +74,10 @@ define([
 			game.destroy();         
 			this.collection.fetch();
 			Registry.models.record.fetch();
+		},
+		
+		updateGames : function(){
+			this.collection.fetch();
 		}
 	
 	});
