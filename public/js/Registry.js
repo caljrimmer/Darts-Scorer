@@ -1,8 +1,6 @@
-define(['LocalStorage'], function(LocalStorage) {
+define([], function() {
     var Registry = {
 		store : "local",
-		userid : "",
-		adminid : LocalStorage.get(),
 		models : {},
 		collections : {},
 		App : {}

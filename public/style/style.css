@@ -311,7 +311,7 @@ ul#score_list {
 	margin:10px;
 	clear:both;
 	height:50px;
-	background: #93f6b0 url('../images/johnson_bk.gif') 0 -3px repeat-x;  
+	background: #93f6b0;  
 }
 
 #scorer_info p {
