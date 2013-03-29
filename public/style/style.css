@@ -136,65 +136,7 @@ img {
 	right:16px; 
 }
 
-.chart_wrapper {
-	margin:0;
-}
-
-#chart {
-	width: 358px; 
-	height: 200px;
-}
-
-.chart_nav ul{
-	margin:0 10px 0 0;
-	padding:0;
-}
-
-.chart_nav ul li{
-	display:block;
-	float:right;
-	padding:8px 16px 8px 16px;
-	margin:0 1px 0 0;
-	color:#F0AFAA;
-	background:#3C0604;
-	font-size:12px;
-	-webkit-border-top-right-radius:5px;
-	-webkit-border-top-left-radius:5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-.chart_nav ul li.chart_on {
-	background:#fff;
-	color:#3C0604;
-	font-weight:bold;
-}
-
-.chart_nav ul li:hover {
-	cursor:pointer;
-	background:#4F120F;
-	color:#fff;
-}
-
-.chart_nav ul li.chart_on:hover {
-	background:#fff;
-	color:#3C0604;
-	cursor:normal;
-}
-
-#chart_container {
-	width:358px;
-	margin-top:0px;
-	padding:10px;
-	background: #fff;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	position:relative;
-}
-
-#scorer, #gameDetail, #loginForm{
+#scorer, #gameDetail, #loginForm, .chart{
    	width:378px;
 	margin:0px 0 20px 0;
 	background: #fff;
@@ -204,6 +146,26 @@ img {
 	padding-bottom:1px;
 	z-index:-1px; 
 }
+
+.chart svg{
+	margin:9px;
+}
+
+svg .placeholder {
+	fill:#eaeaea;
+}
+
+svg .range-0{fill:rgb(165,0,38)}
+svg .range-1{fill:rgb(215,48,39)}
+svg .range-2{fill:rgb(244,109,67)}
+svg .range-3{fill:rgb(253,174,97)}
+svg .range-4{fill:rgb(254,224,139)}
+svg .range-5{fill:rgb(255,255,191)}
+svg .range-6{fill:rgb(217,239,139)}
+svg .range-7{fill:rgb(166,217,106)}
+svg .range-8{fill:rgb(102,189,99)}
+svg .range-9{fill:rgb(26,152,80)}
+svg .range-10{fill:rgb(0,104,55)}
 
 #loginForm { 
 	width:358px;
@@ -806,7 +768,7 @@ table.dart_scoring tr , table.dart_scoring td {
 .link_but {
 	font-size: 18px; 
    	padding: 12px 0 12px 0;
-	width:100%; 
+	width:372px; 
 }   
 
 .but_large {

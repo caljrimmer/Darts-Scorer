@@ -27,7 +27,7 @@ define([
 			this.saveState = {};
 			this.collection = Registry.collections.games;
 			this.record = Registry.models.record;
-			this.model.set({checkoutRoute:'- - -'});
+			this.model.set({checkoutRoute:DartsScorer.checkoutCalculation(1000)});
 			this.render();
 			this.model.bind('sync',this.updateTasks);
 			this.model.bind('change',this.render);
@@ -38,7 +38,6 @@ define([
 			var renderContent = this.template(this.model.toJSON());
 			$(this.el).html(renderContent);
 			this.renderRow();
-			AreaSelect($(this.el).parents('.mainBlock'));  
 			return this;
 		},
 		
@@ -156,6 +155,7 @@ define([
 			this.model.set(this.saveState);
 			if(this.model.isFinished()){
 				this.model.set({
+					isNew: false,
 					gameEnd:new Date(),
 					achievements: this.controllerEndGame(
 						this.model.get('achievements'),

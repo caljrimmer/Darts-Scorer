@@ -24,7 +24,6 @@ define([
 			var renderContent = this.template(this.model.toJSON());
 			$(this.el).html(renderContent);
 			this.renderRow();
-			AreaSelect($(this.el).parents('.mainBlock')); 
 			return this;
 		},
 		

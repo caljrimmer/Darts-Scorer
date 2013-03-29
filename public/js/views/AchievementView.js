@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone', 
   'AreaSelect',
+  'Chart',
   'text!templates/achievement.html',
-], function($, _, Backbone, AreaSelect, achievementTemplate){
+], function($, _, Backbone, AreaSelect, Chart, achievementTemplate){
 	
 	var AchievementView = Backbone.View.extend({
 		
@@ -15,24 +16,37 @@ define([
 		initialize : function(){
 			_.bindAll(this,'render');
 			this.model.bind('reset',this.render);
-			this.model.bind("change", this.render); 
+			this.model.bind("change", this.render);
 			this.updateAchievements();
 		},
 	
 		render : function(){
 			var renderContent = this.template(this.model.toJSON());
 			$(this.el).html(renderContent);
-			AreaSelect($(this.el).parents('.mainBlock')); 
 			return this;
+		},
+		
+		renderChart : function(){
+			this.chart = new Chart();                 
+			this.chart.bar(this.collection.toJSON(),'#barChart');
+			this.chart.block(this.collection.toJSON(),'#blockChart');
 		},
 		
 		updateAchievements : function(){
 			var that = this;
+			
 			this.model.fetch({
 				success : function(){
 					that.render();
 				}
 			});
+			
+			this.collection.fetch({
+				success : function(){
+					that.renderChart();
+				}
+			});
+			
 		} 
 
 	});

@@ -26,7 +26,7 @@ define([
 		render : function(){
 			var $games = $(this.el).find('table tbody'),
 				collection = this.collection,
-				that = this; 
+				that = this;                 
 				
 			if(collection.length){
 				$games.find('tr').not('.tb_subheader').remove();
@@ -39,11 +39,16 @@ define([
 						model: gameItem,
 						collection : collection
 					}); 
-					$games.append(view.render().el);
+					
+					if(Registry.store === "live"){
+						$games.append(view.render().el);
+					}else{
+						$games.prepend(view.render().el);
+						$games.prepend($games.find('tr.tb_subheader'))
+					}   
+					
 				});  
 			}
-			
-			AreaSelect($(this.el).parents('.mainBlock'));
 			return this;                                
 		},
 	
