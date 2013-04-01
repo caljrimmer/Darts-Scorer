@@ -21,73 +21,73 @@ define([
 			'dashboard': 'dashboard',
 			'scoregame': 'scoregame',
 			'stats': 'stats',
-			'game': 'gameDetail',
+			'game/:gameid': 'gameDetail',
 			'': 'default',
 			'*notFound': 'default'
 		},
-
-		dashboard: function(userid) {
-
-			this.recordView = new RecordView({
+		
+		initialize : function(){
+			
+			//Builds Record Model
+			Registry.collections.games.fetch({
+				success : function(){
+					Registry.models.record.gamesToRecord(Registry.collections.games.toJSON());
+				}
+			});
+			
+			Registry.views.recordView = new RecordView({
 				model: Registry.models.record
 			});
 
-			this.gamesView = new GamesView({
+			Registry.views.gamesView = new GamesView({
 				collection: Registry.collections.games
 			});
-               
-			AreaSelect($('#dashboardArea'));
-			this.generateNavView(userid); 
-
-		},
-
-		scoregame: function() {
-
-			this.scorerView = new ScorerView({
-				model: new Game({
-					isNew: true,
-					userid: Registry.userid
-				})
-			});
-	              AreaSelect($('#scorerArea'));
-			this.generateNavView(Registry.userid); 
-
-		},
-
-		gameDetail: function(gameid) {
-			var that = this;
-
-			this.gameView = new GameView({
-				model: new Game({
-					id: gameid
-				})
-			});
-            
-			AreaSelect($('#gameArea'));
-			this.generateNavView(Registry.userid);
-
-		},
-
-		stats: function(userid) {
-			Registry.userid = userid;
-
-			this.achievementView = new AchievementView({
+			
+			Registry.views.achievementView = new AchievementView({
 				model : Registry.models.record,
 				collection : Registry.collections.games
 			});
 			
-			AreaSelect($('#statsArea'));
-			this.generateNavView(userid);  
+			this.navView = new NavView();
+			
 		},
 
-		generateNavView: function(userid) {
-			this.navView = new NavView({
-				model: Registry
-			});     
+		dashboard: function(userid) {
+			AreaSelect($('#dashboardArea'));
+		},
+
+		scoregame: function() {
+			
+			if(Registry.views.scorerView){
+		      	Registry.views.scorerView.dispose();
+		    }
+			 
+			Registry.views.scorerView = new ScorerView({
+				model: new Game({
+					newlyCreated: true
+				})
+			});
+			
+			Registry.views.scorerView.render();
+	        AreaSelect($('#scorerArea'));
+		},
+
+		gameDetail: function(gameid) {
+			Registry.views.gameView = new GameView({
+				model: new Game({
+					id: gameid
+				})
+			});
+			AreaSelect($('#gameArea'));
+		},
+
+		stats: function(userid) {
+			Registry.views.achievementView.updateAchievements();
+			AreaSelect($('#statsArea'));
 		},
 
 		default: function() {
-			Registry.App.navigate('/dashboard/' + Registry.adminid, true);
+			Registry.App.navigate('/dashboard', true);
 		}
 
 	});

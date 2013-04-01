@@ -44,12 +44,8 @@ define([
 		},
 		
 		updateRecord : function(){
-			var that = this; 
-			this.model.fetch({
-				success : function(){
-					that.render();
-				}
-			});
+			this.model.gamesToRecord(Registry.collections.games.toJSON()) 
+			this.render();
 		}
 	
 	});

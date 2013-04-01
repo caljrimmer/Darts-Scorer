@@ -10,10 +10,6 @@ define([
 		template : _.template(scorerDartTemplate),
 		tagName : 'div',
 		className : 'dart_score',
-		
-		events : {
-			'dblclick h2,p' : 'deleteDart'
-		},
 	
 		initialize : function(){
 			this.dart = this.options.dart;
@@ -25,10 +21,6 @@ define([
 			var renderContent = this.template(this.dart);
 			$(this.el).html(renderContent); 
 			return this;
-		},
-		
-		deleteDart : function(){
-			console.log('dblclick');
 		}
 		
 	});

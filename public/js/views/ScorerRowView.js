@@ -30,7 +30,6 @@ define([
 			$.each(this.darts,function(i){
 				var dart = new ScorerDartView({
 					dart: that.darts[i],
-					model:that.model,
 					round:that.round
 				});
 				that.$("td").eq(i+1).html(dart.render().el);

@@ -13,10 +13,6 @@ define([
 	}
 	
 	Chart.prototype.dataFill = function(data,limit){
-		
-		if(Registry.store === "live"){
-			data.reverse()
-		}
 
 		if(data.length < limit){
 			var num = limit - data.length;

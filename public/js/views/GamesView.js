@@ -14,41 +14,40 @@ define([
 		el : $('#history'),
 	
 		initialize : function(){
-			_.bindAll(this,'render','updateRemoveGame','updateAddGame');                 
+			_.bindAll(this,'render','updateRemoveGame','updateGames');                 
 			this.collection.bind('remove',this.render);
+			this.collection.bind('add',this.render);
 			this.collection.bind('reset',this.render); 
-			this.collection.bind("change", this.render);        
-			this.collection.bind('updateAddGame',this.updateAddGame)
+			this.collection.bind("change", this.render);
+			this.collection.bind('updateGames',this.updateGames);        
 			this.collection.bind('updateRemoveGame',this.updateRemoveGame); 
-			this.updateGames();
 		},
 	
 		render : function(){
 			var $games = $(this.el).find('table tbody'),
 				collection = this.collection,
+				count = collection.length,
 				that = this;                 
-				
-			if(collection.length){
-				$games.find('tr').not('.tb_subheader').remove();
-				collection.each(function(gameItem){
-					gameItem.set({
-						achArray : that.controllerAchievements(gameItem.get('achievements')),
-						gameEndFormat : that.controllerTimeAgo(gameItem.get('gameEnd'))
-					},{silent:true}); 
-					var view = new GamesRowView({
-						model: gameItem,
-						collection : collection
-					}); 
-					
-					if(Registry.store === "live"){
-						$games.append(view.render().el);
-					}else{
+			
+			$games.find('tr').not('.tb_subheader').remove();	
+			if(count){
+				collection.each(function(gameItem,i){
+					if(i > (count - 10)){
+						gameItem.set({
+							achArray : that.controllerAchievements(gameItem.get('achievements')),
+							gameEndFormat : that.controllerTimeAgo(gameItem.get('gameEnd'))
+						},{silent:true}); 
+						var view = new GamesRowView({
+							model: gameItem,
+							collection : collection
+						}); 
 						$games.prepend(view.render().el);
-						$games.prepend($games.find('tr.tb_subheader'))
-					}   
-					
-				});  
+					}  
+				});
+			}else{
+				 $games.prepend('<tr><td colspan="4"><p class="empty">No games have been scored yet</p></td></tr>');
 			}
+			$games.prepend($games.find('tr.tb_subheader')); 
 			return this;                                
 		},
 	
@@ -69,20 +68,18 @@ define([
 			});
 			return achArray;
 		},
-		
-		updateAddGame : function(game){
-			this.collection.unshift(game);
-			this.render();
-		},
 	
 		updateRemoveGame : function(game){
-			game.destroy();         
-			this.collection.fetch();
-			Registry.models.record.fetch();
+			this.collection.remove(game);
+			game.destroy(); 
+			this.render();           
+			Registry.models.record.trigger('updateRecord');
 		},
 		
-		updateGames : function(){
-			this.collection.fetch();
+		updateGames : function(game){  
+			this.collection.add(game);
+			game.unbind();
+			Registry.models.record.trigger('updateRecord');
 		}
 	
 	});

@@ -22,6 +22,7 @@ define([
 	
 		render : function(){
 			var renderContent = this.template(this.model.toJSON());
+			this.renderChart();
 			$(this.el).html(renderContent);
 			return this;
 		},

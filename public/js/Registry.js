@@ -1,8 +1,8 @@
 define([], function() {
     var Registry = {
-		store : "local",
 		models : {},
 		collections : {},
+		views : {},
 		App : {}
 	};  
     return Registry;
