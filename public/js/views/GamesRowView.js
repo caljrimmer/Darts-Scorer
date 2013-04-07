@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'AreaSelect',
-  'text!templates/game-row.html',
-], function($, _, Backbone, AreaSelect, gameRowTemplate){
+  'Lang',
+  'text!templates/games-row.html',
+], function($, _, Backbone, AreaSelect, Lang, gameRowTemplate){
 	
 	var $gameArea = $('#gameArea');
 
@@ -18,7 +19,9 @@ define([
 		},
 	
 		render : function(){
-			var renderContent = this.template(this.model.toJSON());
+			var model = this.model.toJSON();
+			model = _.extend(model,Lang.Template.HistoryTable);
+			var renderContent = this.template(model);
 			$(this.el).html(renderContent); 
 			return this;
 		},

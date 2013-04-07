@@ -3,9 +3,10 @@ define([
   'underscore',
   'backbone',
   'AreaSelect',
+  'Lang',
   'views/ScorerRowView',
   'text!templates/game.html',
-], function($, _, Backbone, AreaSelect, ScorerRowView, gameTemplate){
+], function($, _, Backbone, AreaSelect, Lang, ScorerRowView, gameTemplate){
 	
 	var GameView = Backbone.View.extend({
 		
@@ -21,7 +22,9 @@ define([
 		},
 		
 		render : function(){
-			var renderContent = this.template(this.model.toJSON());
+			var model = this.model.toJSON();
+			model = _.extend(model,Lang.Template.Scorer)
+			var renderContent = this.template(model);
 			$(this.el).html(renderContent);
 			this.renderRow();
 			return this;

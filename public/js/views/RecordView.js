@@ -4,8 +4,9 @@ define([
   'backbone',
   'Registry',
   'AreaSelect',
+  'Lang',
   'text!templates/record.html',
-], function($, _, Backbone, Registry, AreaSelect, recordTemplate){
+], function($, _, Backbone, Registry, AreaSelect, Lang, recordTemplate){
 	
 	
 	var RecordView = Backbone.View.extend({
@@ -23,7 +24,9 @@ define([
 		},
 	
 		render : function(){
-			var renderContent = this.template(this.model.toJSON());
+			var model = this.model.toJSON();
+			model = _.extend(model,Lang.Template.Records)
+			var renderContent = this.template(model);
 			$(this.el).html(renderContent);
 			return this;
 		},

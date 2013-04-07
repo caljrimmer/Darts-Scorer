@@ -4,6 +4,7 @@ define([
   'backbone',
   'Registry',
   'AreaSelect',
+  'Lang',
   'models/Game',
   'models/Record', 
   'collections/Games',
@@ -13,7 +14,8 @@ define([
   'views/GamesView',
   'views/ScorerView', 
   'views/NavView',
-], function($, _, Backbone, Registry, AreaSelect, Game, Record, Games, RecordView, AchievementView, GameView, GamesView, ScorerView,NavView){
+  'views/ScorerButtonView'
+], function($, _, Backbone, Registry, AreaSelect, Lang, Game, Record, Games, RecordView, AchievementView, GameView, GamesView, ScorerView,NavView,ScorerButtonView){
   
 	var Router = Backbone.Router.extend({
 
@@ -48,7 +50,13 @@ define([
 				collection : Registry.collections.games
 			});
 			
-			this.navView = new NavView();
+			this.navView = new NavView({
+				model : Lang.Navigation
+			});
+			
+			this.scorerButtonView = new ScorerButtonView({
+				model : Lang.Navigation
+			});
 			
 		},
 

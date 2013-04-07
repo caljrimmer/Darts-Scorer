@@ -5,13 +5,17 @@ define([
   'timeago',
   'Registry',
   'AreaSelect',
+  'Lang',    
   'views/GamesRowView',
-], function($, _, Backbone, timeago, Registry, AreaSelect, GamesRowView){
+  'text!templates/games.html',
+], function($, _, Backbone, timeago, Registry, AreaSelect, Lang, GamesRowView, GamesTemplate){
 	
 	
 	var GamesView = Backbone.View.extend({
 		
 		el : $('#history'),
+		
+		template : _.template(GamesTemplate),
 	
 		initialize : function(){
 			_.bindAll(this,'render','updateRemoveGame','updateGames');                 
@@ -24,12 +28,13 @@ define([
 		},
 	
 		render : function(){
-			var $games = $(this.el).find('table tbody'),
+			var $games,
 				collection = this.collection,
 				count = collection.length,
-				that = this;                 
+				that = this;
 			
-			$games.find('tr').not('.tb_subheader').remove();	
+			$(this.el).html(this.template(Lang.Template.HistoryTable))
+			$games = $(this.el).find('table tbody');                   
 			if(count){
 				collection.each(function(gameItem,i){
 					if(i > (count - 10)){
@@ -45,14 +50,14 @@ define([
 					}  
 				});
 			}else{
-				 $games.prepend('<tr><td colspan="4"><p class="empty">No games have been scored yet</p></td></tr>');
+				 $games.prepend('<tr><td colspan="4"><p class="empty">'+Lang.Template.HistoryTable.NotScoredYetTx+'</p></td></tr>');
 			}
 			$games.prepend($games.find('tr.tb_subheader')); 
 			return this;                                
 		},
 	
-		controllerTimeAgo : function(time){ 
-			return $.timeago(time);
+		controllerTimeAgo : function(time){
+			return $.timeago(time,Lang.TimeAgo); 
 		},
 	
 		controllerAchievements : function(ach,gameEnd){

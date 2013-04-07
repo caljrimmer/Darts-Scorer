@@ -4,8 +4,9 @@ define([
   'backbone', 
   'AreaSelect',
   'Chart',
+  'Lang',
   'text!templates/achievement.html',
-], function($, _, Backbone, AreaSelect, Chart, achievementTemplate){
+], function($, _, Backbone, AreaSelect, Chart, Lang, achievementTemplate){
 	
 	var AchievementView = Backbone.View.extend({
 		
@@ -20,8 +21,10 @@ define([
 			this.updateAchievements();
 		},
 	
-		render : function(){
-			var renderContent = this.template(this.model.toJSON());
+		render : function(){                                       
+			var model = this.model.toJSON();
+			model = _.extend(model,Lang.Template.AchievementsTable);
+			var renderContent = this.template(model);
 			this.renderChart();
 			$(this.el).html(renderContent);
 			return this;

@@ -5,10 +5,11 @@ define([
   'DartsScorer',
   'Registry',
   'AreaSelect',
+  'Lang',
   'views/BaseView',
   'views/ScorerRowView',
   'text!templates/scorer.html',
-], function($, _, Backbone, DartsScorer, Registry, AreaSelect, BaseView, ScorerRowView, scorerTemplate){
+], function($, _, Backbone, DartsScorer, Registry, AreaSelect, Lang, BaseView, ScorerRowView, scorerTemplate){
 
 	var ScorerView = BaseView.extend({
 		
@@ -30,7 +31,9 @@ define([
 		},
 	
 		render : function(){
-			var renderContent = this.template(this.model.toJSON()); 
+			var model = this.model.toJSON();       
+			model = _.extend(model,Lang.Template.Scorer)
+			var renderContent = this.template(model); 
 			$(this.el).html(renderContent);
 			this.renderRow();
 			return this; 

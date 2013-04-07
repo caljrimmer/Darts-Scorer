@@ -1,8 +1,8 @@
 <table cellspacing="0" cellpadding="0" class="tb_body">
 	<tbody>
 		<tr class="tb_subheader">
-			<th style="width: 20%;">Label</th>
-			<th style="width: 80%;">Achievements</th>
+			<th style="width: 20%;"><%= LabelTx %></th>
+			<th style="width: 80%;"><%= AchievementsTx %></th>
 		</tr>
 		<tr class="alt">
 			<td>20s</td>
@@ -14,22 +14,22 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Bulls</td>
+			<td><%= BullsTx %></td>
 			<td>
-				<span id="ach_greeneyes" <%if(greeneye >0){%>class="on"<%}%>>3 Greeneye</span>
-				<span id="ach_bullseyes" <%if(bullseye >0){%>class="on"<%}%>>3 Bullseye</span>
+				<span id="ach_greeneyes" <%if(greeneye >0){%>class="on"<%}%>>3 <%= GreenEyeTx %></span>
+				<span id="ach_bullseyes" <%if(bullseye >0){%>class="on"<%}%>>3 <%= BullsEyeTx %></span>
 			</td>
 		</tr>
 		<tr class="alt">
-			<td>Grouping</td>
+			<td><%= GroupingTx %></td>
 			<td>
-				<span id="ach_singles" <%if(singles >0){%>class="on"<%}%>>3 Singles</span>
-				<span id="ach_doubles" <%if(doubles >0){%>class="on"<%}%>>3 Doubles</span>
-				<span id="ach_trebles" <%if(trebles >0){%>class="on"<%}%>>3 Trebles</span>
+				<span id="ach_singles" <%if(singles >0){%>class="on"<%}%>>3 <%= SinglesTx %></span>
+				<span id="ach_doubles" <%if(doubles >0){%>class="on"<%}%>>3 <%= DoublesTx %></span>
+				<span id="ach_trebles" <%if(trebles >0){%>class="on"<%}%>>3 <%= TreblesTx %></span>
 			</td>
 		</tr>
 		<tr>
-			<td>Darters</td>
+			<td><%= DartersTx %></td>
 			<td>
 				<span id="ach_least24" <%if(leastDarts < 25){%>class="on"<%}%>>D24</span>
 				<span id="ach_least21" <%if(leastDarts < 22){%>class="on"<%}%>>D21</span>
@@ -40,7 +40,7 @@
 			</td>
 		</tr>
 		<tr class="alt">
-			<td>Checkout</td>
+			<td><%= CheckoutTx %></td>
 			<td>
 				<span id="ach_c50" <%if(bestCheckout > 49){%>class="on"<%}%>>C50</span>
 				<span id="ach_c75" <%if(bestCheckout > 74){%>class="on"<%}%>>C75</span>
@@ -51,9 +51,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Specials</td>
+			<td><%= SpecialsTx %></td>
 			<td>
-				<span id="ach_shanghai" <%if(shanghai >0){%>class="on"<%}%>>Shanghai</span>
+				<span id="ach_shanghai" <%if(shanghai >0){%>class="on"<%}%>><%= ShanghaiTx %></span>
 			</td>
 		</tr>
 	</tbody>

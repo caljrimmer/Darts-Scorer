@@ -14,7 +14,9 @@
  * Copyright (c) 2008-2012, Ryan McGeary (ryan -[at]- mcgeary [*dot*] org)
  */
 (function($) {
-  $.timeago = function(timestamp) {
+   var GlobalLangObject;
+  $.timeago = function(timestamp,options) {
+	GlobalLangObject = options;
     if (timestamp instanceof Date) {
       return inWords(timestamp);
     } else if (typeof timestamp === "string") {
@@ -31,28 +33,10 @@
     settings: {
       refreshMillis: 60000,
       allowFuture: false,
-      strings: {
-        prefixAgo: null,
-        prefixFromNow: null,
-        suffixAgo: "",
-        suffixFromNow: "from now",
-        seconds: "a min",
-        minute: "a min",
-        minutes: "%d mins",
-        hour: "an hour",
-        hours: "%d hours",
-        day: "a day",
-        days: "%d days",
-        month: "a month",
-        months: "%d months",
-        year: "a year",
-        years: "%d years",
-        wordSeparator: " ",
-        numbers: []
-      }
+      strings: GlobalLangObject
     },
     inWords: function(distanceMillis) {
-      var $l = this.settings.strings;
+      var $l = GlobalLangObject;
       var prefix = $l.prefixAgo;
       var suffix = $l.suffixAgo;
       if (this.settings.allowFuture) {

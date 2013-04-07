@@ -1,9 +1,9 @@
 <td><%= gameEndFormat %></td>
 <td id="history_ach">
 	<% if(achArray.length > 0 ){ %>
-	    <span class="on extra_space"><%= achArray.length %> Achievements</span> 
+	    <span class="on extra_space"><%= achArray.length %> <%= AchievementsTx %></span> 
 	<% }else{ %>
-		<span class="extra_space"><%= achArray.length %> Achievement</span> 
+		<span class="extra_space"><%= achArray.length %> <%= AchievementTx %></span> 
 	<%}%>    
 		<div class="achDetail">
 		<% _.each(achArray, function(ach) { %>
