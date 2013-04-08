@@ -33,7 +33,7 @@ define([
 				count = collection.length,
 				that = this;
 			
-			$(this.el).html(this.template(Lang.Template.HistoryTable))
+			$(this.el).html(this.template(Lang[Registry.lang].Template.HistoryTable))
 			$games = $(this.el).find('table tbody');                   
 			if(count){
 				collection.each(function(gameItem,i){
@@ -50,14 +50,14 @@ define([
 					}  
 				});
 			}else{
-				 $games.prepend('<tr><td colspan="4"><p class="empty">'+Lang.Template.HistoryTable.NotScoredYetTx+'</p></td></tr>');
+				 $games.prepend('<tr><td colspan="4"><p class="empty">'+Lang[Registry.lang].Template.HistoryTable.NotScoredYetTx+'</p></td></tr>');
 			}
 			$games.prepend($games.find('tr.tb_subheader')); 
 			return this;                                
 		},
 	
 		controllerTimeAgo : function(time){
-			return $.timeago(time,Lang.TimeAgo); 
+			return $.timeago(time,Lang[Registry.lang].TimeAgo); 
 		},
 	
 		controllerAchievements : function(ach,gameEnd){

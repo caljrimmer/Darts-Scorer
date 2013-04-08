@@ -25,7 +25,7 @@ define([
 	
 		render : function(){
 			var model = this.model.toJSON();
-			model = _.extend(model,Lang.Template.Records)
+			model = _.extend(model,Lang[Registry.lang].Template.Records)
 			var renderContent = this.template(model);
 			$(this.el).html(renderContent);
 			return this;

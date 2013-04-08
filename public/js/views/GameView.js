@@ -23,7 +23,7 @@ define([
 		
 		render : function(){
 			var model = this.model.toJSON();
-			model = _.extend(model,Lang.Template.Scorer)
+			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
 			var renderContent = this.template(model);
 			$(this.el).html(renderContent);
 			this.renderRow();

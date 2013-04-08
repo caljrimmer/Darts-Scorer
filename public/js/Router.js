@@ -24,6 +24,7 @@ define([
 			'scoregame': 'scoregame',
 			'stats': 'stats',
 			'game/:gameid': 'gameDetail',
+			'language/:lang': 'language',
 			'': 'default',
 			'*notFound': 'default'
 		},
@@ -51,11 +52,11 @@ define([
 			});
 			
 			this.navView = new NavView({
-				model : Lang.Navigation
+				model : Lang[Registry.lang].Navigation
 			});
 			
 			this.scorerButtonView = new ScorerButtonView({
-				model : Lang.Navigation
+				model : Lang[Registry.lang].Navigation
 			});
 			
 		},
@@ -92,6 +93,12 @@ define([
 		stats: function(userid) {
 			Registry.views.achievementView.updateAchievements();
 			AreaSelect($('#statsArea'));
+		},
+		
+		language : function(lang){
+			Lang.setLang(lang)
+			this.initialize();
+			Registry.App.navigate('/dashboard', true);
 		},
 
 		default: function() {

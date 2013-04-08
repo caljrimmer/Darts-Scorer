@@ -4,16 +4,20 @@ require.config({
         'timeago' : 'vendor/jquery.timeago',
         'underscore' : 'vendor/underscore',
         'backbone' : 'vendor/backbone',
-		'backboneStorage' : 'vendor/backbone.localStorage',
+		'backboneStorage' : 'vendor/backbone.localstorage',
 		'd3' : 'vendor/d3',
 		'text' : 'vendor/text'
     },
 	shim: {
 		d3: {
             exports: 'd3'
-        }, 
+        },
 		underscore: {
 			exports: '_'
+		},
+		timeago : {
+			deps: ["jquery"],
+			exports: "timeago" 
 		},
 		backbone: {
 			deps: ["underscore", "jquery"],

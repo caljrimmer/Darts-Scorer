@@ -19,23 +19,28 @@ define([
 		
 		events : {
 			'click #addScore' : 'eventAddScore',
-			'dblclick .dart_score h2,.dart_score p' : 'eventDeleteDart',
+			'click #graphicScorer a' : 'eventAddGraphicScore',
+			'click .dart_score h2,.dart_score p' : 'eventDeleteDart',
 			'click #newGame' : 'eventNewGame',
-			'keypress #scoreInput' : 'eventEnter'
+			'keypress #scoreInput' : 'eventEnter',
+			'click #keyboardView' : 'eventkeyboardView',
+			'click #graphicView' : 'eventgraphicView'
 		},
 	
 		initialize : function(){
 			_.bindAll(this,'render');
 			this.model.set({checkoutRoute:DartsScorer.checkoutCalculation(1000)});
+			this.model.set({scorerInput:'graphic'});
 			this.model.bind('change',this.render);
 		},
 	
 		render : function(){
 			var model = this.model.toJSON();       
-			model = _.extend(model,Lang.Template.Scorer)
+			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
 			var renderContent = this.template(model); 
 			$(this.el).html(renderContent);
-			this.renderRow();
+			this.renderRow(); 
+			this.renderScorerInput();
 			return this; 
 		},
 		
@@ -49,6 +54,17 @@ define([
 				that.$("tbody").prepend(view.render().el);
 			});
 		},
+		
+		renderScorerInput: function($target,$button){
+			var scorerInput = this.model.get('scorerInput');
+			if(scorerInput === "graphic"){
+				$(this.el).find('#graphicView').addClass('on');
+				$(this.el).find('#graphicScorer').show();
+			}else{
+				$(this.el).find('#keyboardView').addClass('on');
+				$(this.el).find('#score_buttons').show();
+			}
+		}, 
 		
 		afterRender : function(){ 
 			this.$('#score_buttons').hide();
@@ -118,8 +134,11 @@ define([
 			return achievements;  
 		},
 		
-		controllerEndGameCheck : function(score,desc){
-			if(this.model.get('score') - score === 0 && DartsScorer.doublesValidate(desc)){
+		controllerEndGameCheck : function(score,curScore,desc){
+			if((score >= curScore) && (score - curScore !== 1)){
+				if(score === curScore){
+					return DartsScorer.doublesValidate(desc);
+				} 
 				return true;
 			}else{
 				return false;
@@ -137,6 +156,7 @@ define([
 		
 		controllerRoundMaker : function(list){
 			var count = list.length,
+				that = this,
 				obj = {
 					total : 0,
 					score : 501,
@@ -151,8 +171,8 @@ define([
 				v.index = k;
 				score -= curScore; 
 				obj.total += curScore;
-				
-				if(obj.score >= curScore && obj.score - curScore !== 1){
+				     
+				if(that.controllerEndGameCheck(obj.score,curScore,v.desc)){
 					obj.score -= curScore;
 				}
 				
@@ -265,6 +285,18 @@ define([
 
 		},
 		
+		eventAddGraphicScore : function(e){
+			e.preventDefault();
+			
+			var scoreInput = $(e.target).attr('data-desc'),
+				rounds = this.model.get('rounds');
+ 
+			if(DartsScorer.scoreValidate(scoreInput)){
+				this.$('#scoreInput').val(scoreInput)
+				this.updateDartListAdd(this.controllerDartListObj(scoreInput));
+			}
+		},
+		
 		eventEnter : function(e){
 			this.$('#scoreInput').removeClass('input_error');
 			if (e.keyCode == 13) {
@@ -273,9 +305,24 @@ define([
 		},
 		
 		eventDeleteDart : function(e){
+			var that = this;           
 			if(this.model.get('newlyCreated')){
-				this.updateDartListRemove(e)
+				$(e.target).parents('.dart_score').animate({
+					opacity : 0.5
+				},500,function(){
+					that.updateDartListRemove(e)
+				});                                 
 			}
+		},
+		
+		eventkeyboardView : function(e){
+			e.preventDefault();
+			this.model.set({scorerInput:'keyboard'});
+		},
+		
+		eventgraphicView : function(e){
+			e.preventDefault();   
+			this.model.set({scorerInput:'graphic'});
 		}
 		
 	});

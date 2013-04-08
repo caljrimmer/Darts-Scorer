@@ -1,10 +1,273 @@
-<div id="score_buttons" class="clearfix">
+<div class="scorerNavButtons">
+	<a href="#" id="graphicView"><%= GraphicTx %></a> 
+	<a href="#" id="keyboardView"><%= KeyboardTx %></a>
+</div>
+
+<div id="score_buttons" class="clearfix" style="display:none;">
 	<input type="text" pattern="[0-9]*" maxlength="3" id="scoreInput" autocomplete="off" class="fl">
 	<input class="button but_large but_green fr" type="submit" value="<%= EnterScoreTx %>" id="addScore">
-</div> 
+</div>
+
+<div id="graphicScorer" class="clearfix" style="display:none;">
+	<ul class="vert clearfix">
+		
+		<li class="black">
+			<div class="double tl">
+				<a href="#" data-desc="20d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="20">20</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="20t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="19d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="19">19</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="19t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="18d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="18">18</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="18t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="17d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="17">17</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="17t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="16d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="16">16</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="16t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="15d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="15">15</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="15t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double tr">
+				<a href="#" data-desc="14d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="14">14</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="14t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="13d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="13">13</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="13t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="12d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="12">12</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="12t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="11d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="11">11</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="11t">T</a>
+			</div>
+		</li>
+		
+		<li class="bull">
+			<div class="double">
+				<a href="#" data-desc="25">Gr</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="50">Bu</a>
+			</div>
+			<div class="double">
+				<a href="#" data-desc="25">Gr</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="10d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="10">10</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="10t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="9d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="9">9</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="9t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="8d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="8">8</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="8t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="7d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="7">7</a>
+			</div>
+			<div class="treble bl">
+				<a href="#" data-desc="7t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="6d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="6">6</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="6t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="5d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="5">5</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="5t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="4d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="4">4</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="4t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="3d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="3">3</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="3t">T</a>
+			</div>
+		</li>
+		
+		<li class="black">
+			<div class="double">
+				<a href="#" data-desc="2d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="2">2</a>
+			</div>
+			<div class="treble">
+				<a href="#" data-desc="2t">T</a>
+			</div>
+		</li>
+		
+		<li class="white">
+			<div class="double">
+				<a href="#" data-desc="1d">D</a>
+			</div>
+			<div class="single">
+				<a href="#" data-desc="1">1</a>
+			</div>
+			<div class="treble br">
+				<a href="#" data-desc="1t">T</a>
+			</div>
+		</li>
+		
+	</ul>
+</div>
 
 <div id="restart_buttons" class="clearfix">
-	<a class="button but_very_large but_green fl" id="newGame" href="/#scoregame"><%= StartNewGameTx %></a>
+	<a class="button but_very_large but_green fl" id="newGame" href="#scoregame"><%= StartNewGameTx %></a>
 </div>
 
 <div class="border-divide clear"></div>  

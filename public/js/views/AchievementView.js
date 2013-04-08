@@ -1,12 +1,13 @@
 define([
   'jquery',
   'underscore',
-  'backbone', 
+  'backbone',
+  'Registry', 
   'AreaSelect',
   'Chart',
   'Lang',
   'text!templates/achievement.html',
-], function($, _, Backbone, AreaSelect, Chart, Lang, achievementTemplate){
+], function($, _, Backbone, Registry, AreaSelect, Chart, Lang, achievementTemplate){
 	
 	var AchievementView = Backbone.View.extend({
 		
@@ -22,8 +23,8 @@ define([
 		},
 	
 		render : function(){                                       
-			var model = this.model.toJSON();
-			model = _.extend(model,Lang.Template.AchievementsTable);
+			var model = this.model.toJSON();                                       
+			model = _.extend(model,Lang[Registry.lang].Template.AchievementsTable);
 			var renderContent = this.template(model);
 			this.renderChart();
 			$(this.el).html(renderContent);
