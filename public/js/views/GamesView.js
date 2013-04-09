@@ -24,7 +24,8 @@ define([
 			this.collection.bind('reset',this.render); 
 			this.collection.bind("change", this.render);
 			this.collection.bind('updateGames',this.updateGames);        
-			this.collection.bind('updateRemoveGame',this.updateRemoveGame); 
+			this.collection.bind('updateRemoveGame',this.updateRemoveGame);
+			this.render(); 
 		},
 	
 		render : function(){
@@ -33,7 +34,7 @@ define([
 				count = collection.length,
 				that = this;
 			
-			$(this.el).html(this.template(Lang[Registry.lang].Template.HistoryTable))
+			$(this.el).html(this.template(Lang[Registry.lang].Template.HistoryTable));
 			$games = $(this.el).find('table tbody');                   
 			if(count){
 				collection.each(function(gameItem,i){
@@ -83,8 +84,8 @@ define([
 		
 		updateGames : function(game){  
 			this.collection.add(game);
-			game.unbind();
-			Registry.models.record.trigger('updateRecord');
+			game.unbind(); 
+			Registry.models.record.gamesToRecord(this.collection.toJSON());
 		}
 	
 	});

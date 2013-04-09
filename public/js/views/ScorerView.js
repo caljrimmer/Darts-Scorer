@@ -2,6 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'color',
   'DartsScorer',
   'Registry',
   'AreaSelect',
@@ -9,7 +10,7 @@ define([
   'views/BaseView',
   'views/ScorerRowView',
   'text!templates/scorer.html',
-], function($, _, Backbone, DartsScorer, Registry, AreaSelect, Lang, BaseView, ScorerRowView, scorerTemplate){
+], function($, _, Backbone, color, DartsScorer, Registry, AreaSelect, Lang, BaseView, ScorerRowView, scorerTemplate){
 
 	var ScorerView = BaseView.extend({
 		
@@ -19,7 +20,7 @@ define([
 		
 		events : {
 			'click #addScore' : 'eventAddScore',
-			'click #graphicScorer a' : 'eventAddGraphicScore',
+			'click #graphicScorerNew li' : 'eventAddGraphicScoreNew',
 			'click .dart_score h2,.dart_score p' : 'eventDeleteDart',
 			'click #newGame' : 'eventNewGame',
 			'keypress #scoreInput' : 'eventEnter',
@@ -59,7 +60,7 @@ define([
 			var scorerInput = this.model.get('scorerInput');
 			if(scorerInput === "graphic"){
 				$(this.el).find('#graphicView').addClass('on');
-				$(this.el).find('#graphicScorer').show();
+				$(this.el).find('#graphicScorerNew').show();
 			}else{
 				$(this.el).find('#keyboardView').addClass('on');
 				$(this.el).find('#score_buttons').show();
@@ -205,6 +206,28 @@ define([
 			return this.controllerEndGame(ach,rounds);
 		},
 		
+		controllerGraphicScorer : function(scoreInput,scoreInputStored){
+			
+			if(scoreInput === "0" || scoreInput === "25" || scoreInput === "50"){
+				return scoreInput;
+			}
+			
+			if(scoreInputStored === "" && (scoreInput === 't' || scoreInput === 'd')){
+				return false;
+			}
+			
+		    if(scoreInputStored === ""){
+				return scoreInput
+			}
+			
+			if(scoreInputStored !== "" && scoreInput !== 't' && scoreInput !== 'd'){
+				return scoreInputStored + scoreInput
+			}
+            
+			return false;
+ 			
+		},
+		
 		updateDartListAdd : function(scoreObj){
 			var list = this.model.get('list');
 			
@@ -272,8 +295,7 @@ define([
 		
 		eventAddScore : function(){
 			 
-			var scoreInput = this.$('#scoreInput'),
-				rounds = this.model.get('rounds');
+			var scoreInput = this.$('#scoreInput');
  
 			if(DartsScorer.scoreValidate(scoreInput.val())){
 				this.updateDartListAdd(this.controllerDartListObj(scoreInput.val()));
@@ -285,16 +307,31 @@ define([
 
 		},
 		
-		eventAddGraphicScore : function(e){
-			e.preventDefault();
+		eventAddGraphicScoreNew : function(e){
 			
 			var scoreInput = $(e.target).attr('data-desc'),
-				rounds = this.model.get('rounds');
- 
-			if(DartsScorer.scoreValidate(scoreInput)){
-				this.$('#scoreInput').val(scoreInput)
-				this.updateDartListAdd(this.controllerDartListObj(scoreInput));
-			}
+				newScoreInput,
+				that = this,
+				scoreField = this.$('#scoreInput');
+				
+			newScoreInput = this.controllerGraphicScorer(scoreInput,scoreField.val())
+			
+			if(newScoreInput){    
+
+				$(e.target).animate({
+					opacity : 0.5
+				},300,function(){
+					scoreField.val('')
+					if(DartsScorer.scoreValidate(newScoreInput)){
+						that.$('#scoreInput').val(newScoreInput)
+						that.updateDartListAdd(that.controllerDartListObj(newScoreInput));
+					}
+				});                                 
+
+			}else{
+				scoreField.val(scoreInput)
+			} 
+			
 		},
 		
 		eventEnter : function(e){
@@ -306,10 +343,10 @@ define([
 		
 		eventDeleteDart : function(e){
 			var that = this;           
-			if(this.model.get('newlyCreated')){
+			if(this.model.get('newlyCreated') && parseInt($(e.target).data('index')) !== 0){
 				$(e.target).parents('.dart_score').animate({
-					opacity : 0.5
-				},500,function(){
+					backgroundColor : '#d81b21'
+				},300,function(){
 					that.updateDartListRemove(e)
 				});                                 
 			}

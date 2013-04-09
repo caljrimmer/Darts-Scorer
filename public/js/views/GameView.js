@@ -3,10 +3,11 @@ define([
   'underscore',
   'backbone',
   'AreaSelect',
+  'Registry',
   'Lang',
   'views/ScorerRowView',
   'text!templates/game.html',
-], function($, _, Backbone, AreaSelect, Lang, ScorerRowView, gameTemplate){
+], function($, _, Backbone, AreaSelect, Registry, Lang, ScorerRowView, gameTemplate){
 	
 	var GameView = Backbone.View.extend({
 		
@@ -21,7 +22,8 @@ define([
 			this.updateGame();                
 		},
 		
-		render : function(){
+		render : function(){                
+			console.log()
 			var model = this.model.toJSON();
 			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
 			var renderContent = this.template(model);

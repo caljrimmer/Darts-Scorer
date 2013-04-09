@@ -32,7 +32,7 @@ define([
 		},
 		
 		renderChart : function(){
-			this.chart = new Chart();                 
+			this.chart = new Chart();               
 			this.chart.bar(this.collection.toJSON(),'#barChart');
 			this.chart.block(this.collection.toJSON(),'#blockChart');
 		},
@@ -43,12 +43,6 @@ define([
 			this.model.fetch({
 				success : function(){
 					that.render();
-				}
-			});
-			
-			this.collection.fetch({
-				success : function(){
-					that.renderChart();
 				}
 			});
 			

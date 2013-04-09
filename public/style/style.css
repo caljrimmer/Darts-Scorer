@@ -844,6 +844,278 @@ Clearfix
     zoom:1;
 }
 
+/*-----Graphic Scorer New-----*/
+
+#graphicScorerNew {
+	width:348px;
+	height:180px;
+	margin:10px auto;
+	position:relative;
+}
+
+#graphicScorerNew ul li{
+	background:#000;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: absolute;
+	cursor: pointer; 
+	margin:0;
+}
+
+#graphicScorerNew ul li:hover {
+	background-color: #111;
+	color: #fff;
+}
+
+#graphicScorerNew ul li.small{
+	font-size: 16px;
+	width:36px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	padding:0;
+}
+
+#graphicScorerNew ul li.big{
+	font-size: 24px;
+	padding:0;
+	width:67px;
+	height:71px;
+	text-align:center;
+	line-height:72px;
+} 
+
+#graphicScorerNew ul li.miss,
+#graphicScorerNew ul li.double,
+#graphicScorerNew ul li.treble,
+#graphicScorerNew ul li.geye,
+#graphicScorerNew ul li.beye,
+#graphicScorerNew ul li.single{
+	height:36px;
+	padding:0;
+	text-align:center;
+	line-height:36px;
+	width:140px;
+}
+
+#graphicScorerNew ul li.miss,
+#graphicScorerNew ul li.geye,
+#graphicScorerNew ul li.beye,
+#graphicScorerNew ul li.single {
+	width:68px;
+}
+
+#graphicScorerNew ul li.beye {
+	height:72px;
+	line-height:72px;
+}
+
+#graphicScorerNew ul li.white {
+	background: #EFEAA7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F9F5CA), to(#EFEAA7));
+	background: -moz-linear-gradient(top, #F9F5CA, #EFEAA7);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F5CA', endColorstr='#EFEAA7');
+	color:#000;
+	border-right:1px solid #e4dd83;
+	border-bottom:1px solid #e4dd83;
+}
+
+#graphicScorerNew ul li.white:hover {
+	background:#EFEAA7;
+}
+
+#graphicScorerNew ul li.black,
+#graphicScorerNew ul li.miss {
+	background: #000000;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3D3D3D), to(#000000));
+	background: -moz-linear-gradient(top, #3D3D3D, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3D3D3D', endColorstr='#000000');
+}
+
+#graphicScorerNew ul li.black:hover,
+#graphicScorerNew ul li.miss:hover {
+	background:#000;
+}
+
+#graphicScorerNew ul li.black {
+	border-right:1px solid #000;
+	border-bottom:1px solid #000;
+}
+
+#graphicScorerNew ul li.geye,
+#graphicScorerNew ul li.double{
+	background: #08521E;
+	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
+	background: -moz-linear-gradient(top, #226F39, #08521E);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
+}
+
+#graphicScorerNew ul li.geye:hover,
+#graphicScorerNew ul li.double:hover {
+	background: #08521E;
+}
+
+#graphicScorerNew ul li.beye,
+#graphicScorerNew ul li.treble{
+	background: #d81b21;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
+	background: -moz-linear-gradient(top, #ed1c24, #aa1317);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+	
+}
+#graphicScorerNew ul li.beye:hover,
+#graphicScorerNew ul li.treble:hover {
+	background: #d81b21;
+}
+
+#graphicScorerNew ul li.single{
+	border-top:1px solid #eaeaea;
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#eaeaea));
+	background: -moz-linear-gradient(top, #ffffff, #eaeaea);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eaeaea');
+	color:#000;
+}
+
+#graphicScorerNew ul li.single:hover {
+	background:#eaeaea;
+}
+
+#graphicScorerNew ul li#dartgeye2 {
+	top:0px;
+	left:140px;
+}
+
+#graphicScorerNew ul li#dartdouble {
+	top:144px;
+	left:0px;
+}
+
+#graphicScorerNew ul li#darttreble {
+	top:144px;
+	right:0px;
+}
+
+#graphicScorerNew ul li#dartbeye {
+	top:36px;
+	left:140px;
+}
+
+#graphicScorerNew ul li#dartgeye1 {
+	top:108px;
+	left:140px;
+} 
+
+#graphicScorerNew ul li#dartmiss {
+	top:144px;
+	right:140px;
+}
+
+#graphicScorerNew ul li#dart5 {
+	top:0px;
+	left:0px;
+}
+
+#graphicScorerNew ul li#dart9 {
+	top:36px;
+	left:0px;
+}
+
+#graphicScorerNew ul li#dart8 {
+	top:72px;
+	left:0px;
+}
+
+#graphicScorerNew ul li#dart7 {
+	top:108px;
+	left:0px;
+}
+
+#graphicScorerNew ul li#dart12 {
+	top:0px;
+	left:36px;
+}
+
+#graphicScorerNew ul li#dart14 {
+	top:36px;
+	left:36px;
+}
+
+#graphicScorerNew ul li#dart11 {
+	top:72px;
+	left:36px;
+	z-index:2000;
+}
+
+#graphicScorerNew ul li#dart16 {
+	top:108px;
+	left:36px;
+	z-index:2000;
+}
+
+#graphicScorerNew ul li#dart1 {
+	top:0px;
+	right:0px;
+}
+
+#graphicScorerNew ul li#dart4 {
+	top:36px;
+	right:0px;
+}
+
+#graphicScorerNew ul li#dart2 {
+	top:72px;
+	right:0px;
+}
+
+#graphicScorerNew ul li#dart3 {
+	top:108px;
+	right:0px;
+}
+
+#graphicScorerNew ul li#dart13 {
+	top:0px;
+	right:36px;
+}
+
+#graphicScorerNew ul li#dart6 {
+	top:36px;
+	right:36px;
+}
+
+#graphicScorerNew ul li#dart10 {
+	top:72px;
+	right:36px;
+}
+
+#graphicScorerNew ul li#dart15 {
+	top:108px;
+	right:36px;
+}
+
+#graphicScorerNew ul li#dart20 {
+	top:0px;
+	left:72px;
+}         
+
+#graphicScorerNew ul li#dart19 {
+	top:72px;
+	left:72px;
+}
+
+#graphicScorerNew ul li#dart18 {
+	top:0px;
+	right:72px;
+}         
+
+#graphicScorerNew ul li#dart17 {
+	top:72px;
+	right:72px;
+}
+
+
 /*-----Graphic Scorer -----*/
 
 #graphicScorer {

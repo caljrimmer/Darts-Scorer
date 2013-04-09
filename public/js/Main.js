@@ -2,6 +2,7 @@ require.config({
     paths: {
         'jquery' : 'vendor/jquery',
         'timeago' : 'vendor/jquery.timeago',
+		'color' : 'vendor/jquery.color',
         'underscore' : 'vendor/underscore',
         'backbone' : 'vendor/backbone',
 		'backboneStorage' : 'vendor/backbone.localstorage',
@@ -18,6 +19,10 @@ require.config({
 		timeago : {
 			deps: ["jquery"],
 			exports: "timeago" 
+		},
+		color : {
+			deps: ["jquery"],
+			exports: "color" 
 		},
 		backbone: {
 			deps: ["underscore", "jquery"],
