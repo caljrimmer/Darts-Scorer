@@ -965,7 +965,7 @@ Clearfix
 
 #graphicScorerNew ul li.double.on {
 	background: #08521E; 
-	color:yellow;    
+	color:#fffc00;    
 }
 
 #graphicScorerNew ul li.beye,
@@ -984,7 +984,7 @@ Clearfix
 
 #graphicScorerNew ul li.treble.on {
 	background: #aa1317;
-	color:yellow;
+	color:#fffc00;
 }
 
 #graphicScorerNew ul li.single{

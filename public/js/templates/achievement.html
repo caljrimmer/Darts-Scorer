@@ -31,12 +31,12 @@
 		<tr>
 			<td><%= DartersTx %></td>
 			<td>
-				<span id="ach_least24" <%if(leastDarts < 25){%>class="on"<%}%>>D24</span>
-				<span id="ach_least21" <%if(leastDarts < 22){%>class="on"<%}%>>D21</span>
-				<span id="ach_least18" <%if(leastDarts < 19){%>class="on"<%}%>>D18</span>
-				<span id="ach_least15" <%if(leastDarts < 16){%>class="on"<%}%>>D15</span>
-				<span id="ach_least12" <%if(leastDarts < 13){%>class="on"<%}%>>D12</span>
-				<span id="ach_least9" <%if(leastDarts < 10){%>class="on"<%}%>>D9</span>
+				<span id="ach_least24" <%if(leastDarts < 25 && leastDarts !== 0){%>class="on"<%}%>>D24</span>
+				<span id="ach_least21" <%if(leastDarts < 22 && leastDarts !== 0){%>class="on"<%}%>>D21</span>
+				<span id="ach_least18" <%if(leastDarts < 19 && leastDarts !== 0){%>class="on"<%}%>>D18</span>
+				<span id="ach_least15" <%if(leastDarts < 16 && leastDarts !== 0){%>class="on"<%}%>>D15</span>
+				<span id="ach_least12" <%if(leastDarts < 13 && leastDarts !== 0){%>class="on"<%}%>>D12</span>
+				<span id="ach_least9" <%if(leastDarts < 10 && leastDarts !== 0){%>class="on"<%}%>>D9</span>
 			</td>
 		</tr>
 		<tr class="alt">

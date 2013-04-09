@@ -23,7 +23,6 @@ define([
 		},
 		
 		render : function(){                
-			console.log()
 			var model = this.model.toJSON();
 			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
 			var renderContent = this.template(model);
