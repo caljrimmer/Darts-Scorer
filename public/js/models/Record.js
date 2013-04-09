@@ -58,7 +58,7 @@ define([
 				}
 
 				_.each(recordObj,function(v,k){
-					if(iteration > 6){  
+					if(iteration > 5){
 						if(result.achievements[k] > 0){
 			            	recordObj[k] = recordObj[k] + result.achievements[k];
 						}

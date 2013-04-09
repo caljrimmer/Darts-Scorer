@@ -6,7 +6,8 @@ define([
 	
 	var AreaSelect = function(area){
 		$('.mainBlock').hide();
-		area.show();                               
+		area.show();
+		$('.loader').hide();                               
 	};
 	
 	return AreaSelect;

@@ -13,10 +13,11 @@ define([
 	var GamesRowView = Backbone.View.extend({
 	
 		tagName : 'tr',
-		template : _.template(gameRowTemplate), 
-	
+		template : _.template(gameRowTemplate),
+		
 		events : {
-			'click .button' : 'deleteGame'
+			'click a.showGame' : 'eventShowGame',
+			'click .button' : 'eventDeleteGame'
 		},
 	
 		render : function(){
@@ -26,8 +27,15 @@ define([
 			$(this.el).html(renderContent); 
 			return this;
 		},
+		
+		eventShowGame : function(e){
+			e.preventDefault();
+			var id = $(e.target).data('id');
+			Registry.App.navigate('/detail',false)
+			Registry.App.gameDetail(id);
+		},
 	
-		deleteGame : function(){
+		eventDeleteGame : function(){
 			this.collection.trigger('updateRemoveGame',this.model);
 		}
 		

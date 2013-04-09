@@ -35,13 +35,14 @@ require([
   'App',
   'Zoom'
 ], function(App,Zoom){
+                     
+
+	//Resize window for mobile devices
+	//Zoom();
 
 	Backbone.history.start();                   
 	
 	//Makes App Global. Only needed if debugging.
 	window.App = App;
-	
-	//Resize window for mobile devices
-	Zoom();
 	
 });

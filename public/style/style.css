@@ -793,8 +793,8 @@ a.showGame  {
 
 #nav_footer {
 	margin:auto;
-	padding:12px 10px 12px 10px;
-	background:#5a0a06;
+	padding:0px 10px 12px 10px;
+	/*background:#5a0a06;
     -moz-border-radius-topleft:10px;
 	-webkit-border-top-left-radius:10px;
     -moz-border-radius-topright:10px;
@@ -802,19 +802,22 @@ a.showGame  {
 	position: absolute;
 	display: block;
 	width: 358px;
-	bottom: 0;
+	bottom: 0;*/
 }
 
 #nav_footer a {
-	margin:0 8px 0 0;
+	margin:0 12px 0 0;
 }
 .wrapper {
 	margin:0 0 20px 0;
 }
+
 .loader {
-	margin-top:50px;
-	margin-left:170px;
-	float:left;
+	height:50px;
+	width:50px;
+	margin: 150px 175px 150px;
+	background:#fff url('../images/ajax-loader.gif') no-repeat;
+	border-radius:10px;
 }
 
 /*
@@ -851,6 +854,8 @@ Clearfix
 	height:180px;
 	margin:10px auto;
 	position:relative;
+	border-radius:10px;
+	box-shadow:1px 2px 2px #ccc;
 }
 
 #graphicScorerNew ul li{
@@ -953,21 +958,33 @@ Clearfix
 }
 
 #graphicScorerNew ul li.geye:hover,
-#graphicScorerNew ul li.double:hover {
+#graphicScorerNew ul li.double:hover{
 	background: #08521E;
+
+}
+
+#graphicScorerNew ul li.double.on {
+	background: #08521E; 
+	color:yellow;    
 }
 
 #graphicScorerNew ul li.beye,
 #graphicScorerNew ul li.treble{
-	background: #d81b21;
+	background: #aa1317;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
 	background: -moz-linear-gradient(top, #ed1c24, #aa1317);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
 	
 }
+
 #graphicScorerNew ul li.beye:hover,
-#graphicScorerNew ul li.treble:hover {
-	background: #d81b21;
+#graphicScorerNew ul li.treble:hover{
+	background: #aa1317;  
+}
+
+#graphicScorerNew ul li.treble.on {
+	background: #aa1317;
+	color:yellow;
 }
 
 #graphicScorerNew ul li.single{
@@ -991,11 +1008,13 @@ Clearfix
 #graphicScorerNew ul li#dartdouble {
 	top:144px;
 	left:0px;
+	border-bottom-left-radius:10px;
 }
 
 #graphicScorerNew ul li#darttreble {
 	top:144px;
 	right:0px;
+	border-bottom-right-radius:10px;
 }
 
 #graphicScorerNew ul li#dartbeye {
@@ -1016,6 +1035,7 @@ Clearfix
 #graphicScorerNew ul li#dart5 {
 	top:0px;
 	left:0px;
+	border-top-left-radius:10px;
 }
 
 #graphicScorerNew ul li#dart9 {
@@ -1057,7 +1077,8 @@ Clearfix
 
 #graphicScorerNew ul li#dart1 {
 	top:0px;
-	right:0px;
+	right:0px; 
+	border-top-right-radius:10px;
 }
 
 #graphicScorerNew ul li#dart4 {
@@ -1114,132 +1135,3 @@ Clearfix
 	top:72px;
 	right:72px;
 }
-
-
-/*-----Graphic Scorer -----*/
-
-#graphicScorer {
-	width:346px;
-	margin:10px auto
-}
-
-#graphicScorer ul.vert{
-	list-style:none;
-	margin:0 0 10px 0;
-	padding:0;
-} 
-
-#graphicScorer ul.vert li{
-	display:block;
-	float:left;
-	background:#fff;
-	margin-right:0px; 
-	padding:1px;
-	width:47px;
-}
-
-#graphicScorer ul.vert li a {
-	color: #fff;
-	font-size: 16px;
-	text-align: center;
-	width: 34px;
-	text-shadow: 0 2px 2px rgba(0,0,0,.5);
-	height: 18px;
-	display: block; 
-}
-
-#graphicScorer ul.vert li div {
-	padding:6px;
-	text-align:center;
-}
-
-#graphicScorer ul.vert li div.br{
-	border-bottom-right-radius:5px;
-}
-
-#graphicScorer ul.vert li div.bl{
-	border-bottom-left-radius:5px;
-}
-
-#graphicScorer ul.vert li div.tr{
-	border-top-right-radius:5px;
-}
-
-#graphicScorer ul.vert li div.tl{
-	border-top-left-radius:5px;
-}
-
-
-#graphicScorer div.single a {
-	font-weight:bold;
-}
-
-#graphicScorer li.white div.double{
-	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
-	background: -moz-linear-gradient(top, #226F39, #08521E);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
-	border-bottom:1px solid #fff; 
-}
-
-#graphicScorer li.white div.treble{
-	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
-	background: -moz-linear-gradient(top, #226F39, #08521E);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
-	border-top:1px solid #fff; 
-}
-
-#graphicScorer li.white div.single{
-	background: #EFEAA7;
-	background: -webkit-gradient(linear, left top, left bottom, from(#F9F5CA), to(#EFEAA7));
-	background: -moz-linear-gradient(top, #F9F5CA, #EFEAA7);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F5CA', endColorstr='#EFEAA7');
-}
-
-#graphicScorer li.white div.single a {
-	color:#000;
-}
-
-#graphicScorer li.black div.double{
-	background: #d81b21;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
-	background: -moz-linear-gradient(top, #ed1c24, #aa1317);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
-	border-bottom:1px solid #fff; 
-}
-
-#graphicScorer li.black div.treble{
-	background: #d81b21;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
-	background: -moz-linear-gradient(top, #ed1c24, #aa1317);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
-	border-top:1px solid #fff; 
-}
-
-#graphicScorer li.black div.single{
-	background: #000000;
-	background: -webkit-gradient(linear, left top, left bottom, from(#3D3D3D), to(#000000));
-	background: -moz-linear-gradient(top, #3D3D3D, #000000);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3D3D3D', endColorstr='#000000'); 
-}
-
-#graphicScorer li.bull div.treble{
-	background: #d81b21;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
-	background: -moz-linear-gradient(top, #ed1c24, #aa1317);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
-	border-top:1px solid #fff; 
-}
-
-#graphicScorer li.bull div.double{
-	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#226F39), to(#08521E));
-	background: -moz-linear-gradient(top, #226F39, #08521E);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#226F39', endColorstr='#08521E');
-	 
-}
-
-#graphicScorer li.bull div.double:first-child {
-	border-bottom:1px solid #fff;
-}           

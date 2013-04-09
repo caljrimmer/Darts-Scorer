@@ -70,6 +70,15 @@ define([
 		afterRender : function(){ 
 			this.$('#score_buttons').hide();
 			this.$('#restart_buttons').show();
+		},
+		
+		afterRenderGraphicScorer : function($target){
+			if($target){
+				$target.addClass('on');
+			}
+			else{
+				$('.double,.treble').removeClass('on'); 
+			}
 		},                      
 		
 		controllerDartListObj : function(value){
@@ -91,7 +100,7 @@ define([
 			if(achievements.highest3d < total){
 				achievements.highest3d = total;
 			}
-			
+
 			if(DartsScorer.oneEightyAch(total)){
 				++achievements.oneEighty;
 			}
@@ -131,7 +140,6 @@ define([
 			if(DartsScorer.shanghaiAch(round.darts,total)){
 				++achievements.shanghai;
 			}
-		
 			return achievements;  
 		},
 		
@@ -147,12 +155,12 @@ define([
 		},
 		
 		controllerEndGame : function(achievements,rounds){
-			if(rounds[0].score === 0){
-				achievements.checkout = rounds[1].score;
+			if(rounds[rounds.length - 1].score === 0){
+				achievements.checkout = rounds[rounds.length - 2].score;
 			}else{
-				achievements.checkout = rounds[0].score; 
+				achievements.checkout = rounds[rounds.length - 1].score; 
 			}
-		   return achievements;
+		   	return achievements;
 		},
 		
 		controllerRoundMaker : function(list){
@@ -316,19 +324,20 @@ define([
 				
 			newScoreInput = this.controllerGraphicScorer(scoreInput,scoreField.val())
 			
+			this.afterRenderGraphicScorer();
+			
 			if(newScoreInput){    
-
 				$(e.target).animate({
-					opacity : 0.5
-				},300,function(){
+					opacity : 0.6
+				},100,function(){
 					scoreField.val('')
 					if(DartsScorer.scoreValidate(newScoreInput)){
 						that.$('#scoreInput').val(newScoreInput)
 						that.updateDartListAdd(that.controllerDartListObj(newScoreInput));
 					}
 				});                                 
-
-			}else{
+			}else{ 
+				this.afterRenderGraphicScorer($(e.target));
 				scoreField.val(scoreInput)
 			} 
 			

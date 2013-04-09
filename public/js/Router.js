@@ -23,7 +23,7 @@ define([
 			'dashboard': 'dashboard',
 			'scoregame': 'scoregame',
 			'stats': 'stats',
-			'game/:gameid': 'gameDetail',
+			'game*:gameid': 'gameDetail',
 			'language/:lang': 'language',
 			'': 'default',
 			'*notFound': 'default'
