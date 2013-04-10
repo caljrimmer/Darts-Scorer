@@ -84,7 +84,7 @@ define([
 		
 		updateGames : function(game){  
 			this.collection.add(game);
-			game.unbind(); 
+			game.unbind();
 			Registry.models.record.gamesToRecord(this.collection.toJSON());
 		}
 	

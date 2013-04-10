@@ -13,7 +13,6 @@ define([
 	
 		initialize : function(){
 			this.dart = this.options.dart;
-			_.bindAll(this,'render');
 		},
 	
 		render : function(){

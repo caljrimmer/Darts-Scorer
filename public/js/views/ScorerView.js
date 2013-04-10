@@ -32,32 +32,40 @@ define([
 			_.bindAll(this,'render');
 			this.model.set({checkoutRoute:DartsScorer.checkoutCalculation(1000)});
 			this.model.set({scorerInput:'graphic'});
-			this.model.bind('change',this.render);
+			this.bindTo(this.model, 'change', this.render);
+			this.renderInitial();
 		},
 	
 		render : function(){
-			var model = this.model.toJSON();       
-			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
-			var renderContent = this.template(model); 
-			$(this.el).html(renderContent);
 			this.renderRow(); 
 			this.renderScorerInput();
 			return this; 
 		},
 		
+		renderInitial : function(){
+			var model = this.model.toJSON();       
+			model = _.extend(model,Lang[Registry.lang].Template.Scorer)
+			var renderContent = this.template(model); 
+			$(this.el).html(renderContent);
+		},
+		
 		renderRow : function(){ 
 			var rounds = this.model.toJSON().rounds,
 				that = this;
+			that.$("tbody").empty();
 			$.each(rounds,function(i){
 				var view = new ScorerRowView({
                     round : rounds[i]
                 });
+				Registry.views.scorerView.subViewTo(view);
 				that.$("tbody").prepend(view.render().el);
 			});
 		},
 		
 		renderScorerInput: function($target,$button){
 			var scorerInput = this.model.get('scorerInput');
+			$(this.el).find('.scorerNavButtons a').removeClass('on');
+			$(this.el).find('.scoringInput').hide();
 			if(scorerInput === "graphic"){
 				$(this.el).find('#graphicView').addClass('on');
 				$(this.el).find('#graphicScorerNew').show();
@@ -215,25 +223,11 @@ define([
 		},
 		
 		controllerGraphicScorer : function(scoreInput,scoreInputStored){
-			
-			if(scoreInput === "0" || scoreInput === "25" || scoreInput === "50"){
-				return scoreInput;
+			if(DartsScorer.scoreValidate(scoreInput + scoreInputStored)){
+				return scoreInput + scoreInputStored; 
 			}
 			
-			if(scoreInputStored === "" && (scoreInput === 't' || scoreInput === 'd')){
-				return false;
-			}
-			
-		    if(scoreInputStored === ""){
-				return scoreInput
-			}
-			
-			if(scoreInputStored !== "" && scoreInput !== 't' && scoreInput !== 'd'){
-				return scoreInputStored + scoreInput
-			}
-            
-			return false;
- 			
+			return false
 		},
 		
 		updateDartListAdd : function(scoreObj){
@@ -315,26 +309,28 @@ define([
 
 		},
 		
-		eventAddGraphicScoreNew : function(e){
+		eventAddGraphicScoreNew : function(e){ 
+			
+			console.log(this.model)
 			
 			var scoreInput = $(e.target).attr('data-desc'),
 				newScoreInput,
 				that = this,
-				scoreField = this.$('#scoreInput');
+				scoreField = $(this.el).find('#scoreInput');
 				
 			newScoreInput = this.controllerGraphicScorer(scoreInput,scoreField.val())
-			
+
 			this.afterRenderGraphicScorer();
 			
-			if(newScoreInput){    
+			if(DartsScorer.scoreValidate(scoreInput)){    
 				$(e.target).animate({
 					opacity : 0.6
-				},100,function(){
+				},200,function(){
 					scoreField.val('')
 					if(DartsScorer.scoreValidate(newScoreInput)){
-						that.$('#scoreInput').val(newScoreInput)
 						that.updateDartListAdd(that.controllerDartListObj(newScoreInput));
 					}
+					$(this).css({opacity:1})
 				});                                 
 			}else{ 
 				this.afterRenderGraphicScorer($(e.target));
@@ -350,7 +346,8 @@ define([
 			}
 		},
 		
-		eventDeleteDart : function(e){
+		eventDeleteDart : function(e){ 
+			console.log(this.model) 
 			var that = this;           
 			if(this.model.get('newlyCreated') && parseInt($(e.target).data('index')) !== 0){
 				$(e.target).parents('.dart_score').animate({

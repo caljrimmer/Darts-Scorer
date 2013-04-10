@@ -25,7 +25,7 @@ define([
 			'stats': 'stats',
 			'game*:gameid': 'gameDetail',
 			'language/:lang': 'language',
-			'': 'default',
+			'': 'defaultRoute',
 			'*notFound': 'default'
 		},
 		
@@ -101,7 +101,7 @@ define([
 			Registry.App.navigate('/dashboard', true);
 		},
 
-		default: function() {
+		defaultRoute: function() {
 			Registry.App.navigate('/dashboard', true);
 		}
 

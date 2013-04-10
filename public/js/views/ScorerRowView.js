@@ -2,9 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'Registry',
   'views/ScorerDartView',
   'text!templates/scorer-row.html'
-], function($, _, Backbone, ScorerDartView, scorerRowTemplate){
+], function($, _, Backbone, Registry, ScorerDartView, scorerRowTemplate){
 
 	var ScorerRowView = Backbone.View.extend({
 		
@@ -14,8 +15,6 @@ define([
 		initialize : function(){
 			this.round = this.options.round;
 			this.darts = this.options.round.darts;
-			_.bindAll(this,'render');
-
 		},
 	
 		render : function(){                              
@@ -32,6 +31,7 @@ define([
 					dart: that.darts[i],
 					round:that.round
 				});
+				Registry.views.scorerView.subViewTo(dart);
 				that.$("td").eq(i+1).html(dart.render().el);
 				that.$(".score_total").html(that.round.score);
 			});
