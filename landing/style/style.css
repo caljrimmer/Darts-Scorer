@@ -1,0 +1,150 @@
+/*----- Basics Start -----*/
+
+body {
+	color: #000;
+	font-family: 'Myriad Pro',helvetica,arial;
+	font-size: 12px;
+	text-align: center;
+	background:#fff url('../images/gdc/black_bk.gif') top repeat-x;
+	margin:0;
+	padding:0;
+} 
+
+a {
+	background:#eaeaea;
+	padding:6px;
+	color:#A9382B;
+}
+
+#container {
+	width:1000px;
+	margin:auto;
+	position:relative;
+	min-height:600px;	
+}
+
+	#header h1 {
+		width:436px;
+		height:118px;
+		background:url(../images/gdc/gdc-logo.gif) no-repeat;
+		text-indent:-5000px;
+	}
+
+#screen {
+	width:485px;
+	height:603px;
+	background:url(../images/gdc/gdc-screen.jpg) no-repeat;
+	text-indent:-5000px;
+	top:0;
+	right:0; 
+	position:absolute;
+}
+
+#features{
+	width:500px;
+}
+
+#features h2 {
+	font-size:44px;
+	line-height:56px;
+	margin-top:30px;
+	color:#999;
+}
+
+#features h2 span {
+	background:#eaeaea;
+	color:#000;
+	padding:6px;
+}
+
+#features table {
+    font-size: 1.2em;
+    border-collapse: collapse;
+    width: 500px;
+	margin-top:30px;
+	position:relative;
+}
+
+#features table th {
+    text-align: left;
+	font-weight:bold;
+}
+
+#features table td,
+#features table th {
+    padding: 10px;
+}
+
+#features table thead td,
+#features table td {
+    text-align: center;
+}
+
+#features table tbody tr th {
+    padding-left: 10px;
+}
+
+#features table tbody tr th span {
+    line-height: 20px;
+}
+
+#features table thead th:nth-child(2) {
+    background-color: #D95748;
+    color: #FFF;
+    text-align: center;
+    width: 20%;
+}
+
+#features table thead th:nth-child(3) {
+    background-color: #A9382B;
+    color: #FFF;
+    text-align: center;
+    width: 20%;
+}
+
+#features table tbody tr:nth-child(odd) th,
+#features table tbody tr:nth-child(odd) td:nth-child(3) {
+    background-color: #E3E3E3;
+}
+
+#features table tbody tr:nth-child(odd) td:nth-child(2) {
+    background-color: #EBEBEB;
+}
+
+#features table tbody tr:nth-child(even) th,
+#features table tbody tr:nth-child(even) td:nth-child(3) {
+    background-color: #F6F6F6;
+}
+
+#features table tbody tr:nth-child(even) td:nth-child(2) {
+    background-color: #FFF;
+}
+
+.comingsoon {
+	position:absolute;
+	right:-30px;
+	top:-40px;
+	width:70px;
+	height:70px;
+	background:url(../images/gdc/starburst.png) no-repeat;
+	z-index:2000;
+}
+
+#android {
+	top:596px;
+	right:170px;
+	position:absolute;
+}
+
+#android a {
+	padding:0;
+	background:0;
+	border:none;
+}
+
+#footer {
+	margin:30px 0 30px 0;
+	border-top:1px dotted #ccc;
+	padding:30px 0 0px 0;
+	text-align:right;
+}
