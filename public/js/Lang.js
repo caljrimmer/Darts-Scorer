@@ -51,7 +51,11 @@ define(['Registry'], function(Registry){
 					StartNewGameTx : 'Start New Game',
 					EnterScoreTx : 'Enter Score',
 					AverageTx : 'Ave',
-					NumberofDartsTx : 'Num'
+					NumberofDartsTx : 'Num',
+					StartTx : 'Start',
+					FinishTx : 'Finish',
+					DurationTx : 'Duration', 
+					SecsTx : 'secs'
 				}
 			},
 			TimeAgo : {
@@ -117,7 +121,11 @@ define(['Registry'], function(Registry){
 					StartNewGameTx : 'Starten nieuw spel',
 					EnterScoreTx : 'Vore score',
 					AverageTx : 'Gemi',
-					NumberofDartsTx : 'Aan'
+					NumberofDartsTx : 'Aan',
+					StartTx : 'Beginnen',
+					FinishTx : 'Afmaken',
+					DurationTx : 'Duur', 
+					SecsTx : 'secs'
 				}
 			},
 			TimeAgo : {
@@ -183,7 +191,11 @@ define(['Registry'], function(Registry){
 					StartNewGameTx : 'Iniciar un nevo juego',
 					EnterScoreTx : 'Puntuación',
 					AverageTx : 'Prom',
-					NumberofDartsTx : 'Núm'
+					NumberofDartsTx : 'Núm',
+					StartTx : 'Iniciar',
+					FinishTx : 'Terminar',
+					DurationTx : 'Duracion', 
+					SecsTx : 'segundo'
 				}
 			},
 			TimeAgo : {

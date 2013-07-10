@@ -82,6 +82,11 @@ define([
 		},
 
 		gameDetail: function(gameid) {
+		
+			if(Registry.views.gameView){
+		      	Registry.views.gameView.dispose();
+		    }
+			
 			Registry.views.gameView = new GameView({
 				model: new Game({
 					id: gameid

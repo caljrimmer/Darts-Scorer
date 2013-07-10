@@ -13,6 +13,7 @@ define([
 		tagName : 'tr',
 	
 		initialize : function(){
+			this.view = this.options.view;
 			this.round = this.options.round;
 			this.darts = this.options.round.darts;
 		},
@@ -29,9 +30,9 @@ define([
 			$.each(this.darts,function(i){
 				var dart = new ScorerDartView({
 					dart: that.darts[i],
-					round:that.round
+					round:that.round 
 				});
-				Registry.views.scorerView.subViewTo(dart);
+				that.view.subViewTo(dart);
 				that.$("td").eq(i+1).html(dart.render().el);
 				that.$(".score_total").html(that.round.score);
 			});

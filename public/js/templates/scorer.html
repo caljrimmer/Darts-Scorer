@@ -4,8 +4,14 @@
 </div>
 
 <div id="score_buttons" class="scoringInput clearfix" style="display:none;">
-	<input type="text" pattern="[0-9]*" maxlength="3" id="scoreInput" autocomplete="off" class="fl">
-	<input class="button but_large but_green fr" type="submit" value="<%= EnterScoreTx %>" id="addScore">
+	<input type="number" pattern="[0-9]*" maxlength="3" id="scoreInput" autocomplete="off" class="fl">
+	<div id="submitButtons">
+		<a href="#" class="button but_large but_green fr"data-desc="t">T</a> 
+		<a href="#" class="button but_large but_green fr" data-desc="d">D</a>
+		<a href="#" class="button but_large but_green fr" data-desc="s">S</a> 
+	</div>
+	
+	<!--input class="button but_large but_green fr" type="submit" value="<%= EnterScoreTx %>" id="addScore"-->
 </div>
 
 <div id="graphicScorerNew" class="scoringInput clearfix" style="display:none;">

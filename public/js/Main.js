@@ -7,7 +7,8 @@ require.config({
         'backbone' : 'vendor/backbone',
 		'backboneStorage' : 'vendor/backbone.localstorage',
 		'd3' : 'vendor/d3',
-		'text' : 'vendor/text'
+		'text' : 'vendor/text',
+		'moment' : 'vendor/moment'
     },
 	shim: {
 		d3: {
@@ -33,12 +34,15 @@ require.config({
 
 require([
   'App',
-  'Zoom'
-], function(App,Zoom){
+  'Zoom',
+  'GA'
+], function(App,Zoom,GA){
                      
-
 	//Resize window for mobile devices
-	//Zoom();
+	Zoom();
+	
+	//Activate Google Analytics
+	GA.initialize();
 
 	Backbone.history.start();                   
 	

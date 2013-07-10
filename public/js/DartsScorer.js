@@ -50,7 +50,7 @@ define([
 		scoreValidate : function(score){ 
 
 			//Validates 0 through 20, 1D to 20D (D1 to D20), 1T to 20T (T1 to T20), 25 and 50.
-			if(score.match(/^[0-9]$|^[0-1][0-9]$|^[2][0]$|[1-9]{1}[DdTt]|[0-1][0-9]{1}[DdTt]|[2][0]{1}[DdTt]|^25$|^50$|^[DdTt][0-1][0-9]$|^[DdTt][1-9]$|^[DdTt][2][0]$/)){
+			if(score.match(/^[0-9]$|^[0-1][0-9]$|^[2][0]$|^[1-9]{1}[DdTt]$|^[0-1][0-9]{1}[DdTt]$|^[2][0]{1}[DdTt]$|^25$|^50$|^[DdTt][0-1][0-9]$|^[DdTt][1-9]$|^[DdTt][2][0]$/)){
 				return true;
 			}else{
 				return false;

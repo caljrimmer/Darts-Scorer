@@ -10,6 +10,10 @@ body {
 	padding:0 3px 0 3px;
 }
 
+a,li {
+	-webkit-tap-highlight-color:rgba(0,0,0,0); 
+}                                                    
+
 img {
 	border: 0;
 }
@@ -236,16 +240,6 @@ svg .range-10{fill:rgb(0,104,55)}
 	background:#9AF6B6;
 }
 
-a#scoreInput_submit {
-	width:160px;
-	height:36px;
-	text-indent:-5000px;
-	position:absolute;
-	top:10px;
-	background: url('../images/enter_but.gif') no-repeat;
-	right:14px;
-}
-
 .score_total{
 	font-size:36px;
 	font-weight:bold;
@@ -320,15 +314,16 @@ ul#score_list {
 	border:1px solid #5a0a06;
 	padding:5px 10px 5px;  
 	margin-left:10px;
+	font-size:12px;
 }
 
 .scorerNavButtons a.on {
 	color:#000;
-	border:1px solid #eaeaea; 
+	border:1px solid #ccc; 
 	background: #08521E;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#eaeaea));
-	background: -moz-linear-gradient(top, #ffffff, #eaeaea);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eaeaea');
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ccc));
+	background: -moz-linear-gradient(top, #ffffff, #ccc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ccc');
 }
 
 #scorer ul li {
@@ -616,6 +611,11 @@ table.dart_scoring tr , table.dart_scoring td {
 .but_large {
 	font-size: 18px;
 	padding: 8px 35px 8px 35px;
+}
+
+#submitButtons .but_large {
+	font-size: 18px;
+	padding: 10px 22px 10px 22px;
 }
 
 .but_very_large {
@@ -1134,4 +1134,31 @@ Clearfix
 #graphicScorerNew ul li#dart17 {
 	top:72px;
 	right:72px;
+}
+
+#gameDetails {
+	margin:10px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	color:#08521e;
+	width:338px;
+	background: #93f6b0;
+	padding:10px;
+}
+
+#gameDetails ul{
+	padding:0;
+	margin:0;
+}
+
+#gameDetails ul li{
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	color:#666;
+	background:#fff;
+	font-size:14px;
+	padding:6px;
+	margin:3px 0 3px 0px; 
+	width:328px;
+	
 }

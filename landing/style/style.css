@@ -6,8 +6,8 @@ body {
 	font-size: 12px;
 	text-align: center;
 	background:#fff url('../images/gdc/black_bk.gif') top repeat-x;
-	margin:0;
 	padding:0;
+	margin:0 10px 0 10px;
 } 
 
 a {
@@ -136,7 +136,14 @@ a {
 	position:absolute;
 }
 
-#android a {
+#appstore {
+	top:670px;
+	right:170px;
+	position:absolute;
+}
+
+#android a,
+#appstore a {
 	padding:0;
 	background:0;
 	border:none;
@@ -147,4 +154,8 @@ a {
 	border-top:1px dotted #ccc;
 	padding:30px 0 0px 0;
 	text-align:right;
+}
+
+#footer p {
+	float:left;
 }
